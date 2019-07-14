@@ -1,4 +1,4 @@
-package jfcs.intro;
+package com.zyj.jfcs.app;
 
 import org.eclipse.equinox.app.IApplication;
 import org.eclipse.equinox.app.IApplicationContext;

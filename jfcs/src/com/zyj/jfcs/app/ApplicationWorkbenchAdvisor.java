@@ -1,4 +1,4 @@
-package jfcs.intro;
+package com.zyj.jfcs.app;
 
 import org.eclipse.ui.application.IWorkbenchConfigurer;
 import org.eclipse.ui.application.IWorkbenchWindowConfigurer;

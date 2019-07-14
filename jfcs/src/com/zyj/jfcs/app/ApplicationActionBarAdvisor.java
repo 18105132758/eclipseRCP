@@ -1,4 +1,4 @@
-package jfcs.intro;
+package com.zyj.jfcs.app;
 
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.MenuManager;

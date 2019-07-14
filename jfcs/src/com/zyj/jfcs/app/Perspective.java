@@ -1,4 +1,4 @@
-package jfcs.intro;
+package com.zyj.jfcs.app;
 
 import org.eclipse.ui.IPageLayout;
 import org.eclipse.ui.IPerspectiveFactory;
