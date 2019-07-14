@@ -7,14 +7,14 @@
          point="org.eclipse.core.runtime.applications">
       <application>
          <run
-               class="jfcs.intro.Application">
+               class="com.zyj.jfcs.app.Application">
          </run>
       </application>
    </extension>
    <extension
          point="org.eclipse.ui.perspectives">
       <perspective
-            class="jfcs.intro.Perspective"
+            class="com.zyj.jfcs.app.Perspective"
             name="RCP Perspective"
             id="jfcs.perspective">
       </perspective>
