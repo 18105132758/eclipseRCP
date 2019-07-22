@@ -1,6 +1,6 @@
 package com.zyj.jfcs.app.model;
 /**
- * 	用户实体
+ * 	鐢ㄦ埛瀹炰綋
  * @author zhouyj
  */
 public class User {

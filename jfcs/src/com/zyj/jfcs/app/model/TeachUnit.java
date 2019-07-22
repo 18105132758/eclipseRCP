@@ -1,6 +1,6 @@
 package com.zyj.jfcs.app.model;
 /**
- * 教学单位
+ * 鏁欏鍗曚綅
  * @author zhouyj
  *
  */

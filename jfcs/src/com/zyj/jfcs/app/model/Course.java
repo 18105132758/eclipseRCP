@@ -1,6 +1,6 @@
 package com.zyj.jfcs.app.model;
 /**
- * 	¿Î³Ì¶ÔÏó
+ * 	è¯¾ç¨‹å¯¹è±¡
  * @author zhouyj
  *
  */
@@ -11,55 +11,55 @@ public class Course {
 	
 	private int id;
 	/**
-	 * Ñ§ÆÚ
+	 * å­¦æœŸ
 	 */
 	private String term;
 	/**
-	 * Äê·İ
+	 * å¹´ä»½
 	 */
 	private int year;
 	/**
-	 * ½ÌÑ§µ¥Î»´úÂë
+	 * æ•™å­¦å•ä½ä»£ç 
 	 */
 	private String unitId;
 	/**
-	 * ¿Î³Ì´úÂë
+	 * è¯¾ç¨‹ä»£ç 
 	 */
 	private String courseId;
 	/**
-	 * ¿Î³ÌÀà±ğ
+	 * è¯¾ç¨‹ç±»åˆ«
 	 */
 	private String courseType;
 	/**
-	 * ¿Î³ÌÃû³Æ
+	 * è¯¾ç¨‹åç§°
 	 */
 	private String courseName;
 	/**
-	 * °à¼¶Ãû³Æ
+	 * ç­çº§åç§°
 	 */
 	private String className;
 	/**
-	 * Ñ§ÉúÊı
+	 * å­¦ç”Ÿæ•°
 	 */
 	private int nj;
 	/**
-	 *  Ñ§Ê±Êı
+	 *  å­¦æ—¶æ•°
 	 */
 	private int n2j;
 	/**
-	 * Ñ§Éú²ã´ÎÏµÊı£¬ ¿¼ÂÇµ½¾«¶ÈÎÊÌâ£¬Ê¹ÓÃBigDecimalÀàĞÍ
+	 * å­¦ç”Ÿå±‚æ¬¡ç³»æ•°ï¼Œ è€ƒè™‘åˆ°ç²¾åº¦é—®é¢˜ï¼Œä½¿ç”¨BigDecimalç±»å‹
 	 */
 	private BigDecimal r1j;
 	/**
-	 * ¿Î³Ì»ò×¨ÒµÏµÊı
+	 * è¯¾ç¨‹æˆ–ä¸“ä¸šç³»æ•°
 	 */
 	private BigDecimal r2j;
 	/**
-	 * ¿Î³ÌÖÊÁ¿ÏµÊı
+	 * è¯¾ç¨‹è´¨é‡ç³»æ•°
 	 */
 	private BigDecimal r3j;
 	/**
-	 * ËùÊô½ÌÑ§µ¥Î»
+	 * æ‰€å±æ•™å­¦å•ä½
 	 */
 	private TeachUnit teachUnit;
 	public int getId() {
