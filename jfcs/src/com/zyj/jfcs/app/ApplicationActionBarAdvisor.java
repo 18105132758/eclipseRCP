@@ -17,29 +17,29 @@ import org.eclipse.ui.IWorkbenchWindow;
 public class ApplicationActionBarAdvisor extends ActionBarAdvisor {
 
 	/**
-	 * °ïÖú²Ëµ¥£º»¶Òû»­Ãæ¡¢°ïÖúĞÅÏ¢
+	 * å¸®åŠ©èœå•ï¼šæ¬¢é¥®ç”»é¢ã€å¸®åŠ©ä¿¡æ¯
 	 */
     private IWorkbenchAction welcomeAction, helpInfo;
     
     /**
-     * »ù´¡Êı¾İ²Ëµ¥£º¹«¹²²ÎÊıÊÊÉèÖÃ¡¢½ÌÑ§µ¥Î»Çé¿ö
+     * åŸºç¡€æ•°æ®èœå•ï¼šå…¬å…±å‚æ•°é€‚è®¾ç½®ã€æ•™å­¦å•ä½æƒ…å†µ
      */
     private Action publicData, teachUnitData;
     /**
-     * ²âÊÔÊı¾İ²Ëµ¥: ÀúÊ·Êı¾İ¡¢Í¼ĞÎ¶Ô±È
+     * æµ‹è¯•æ•°æ®èœå•: å†å²æ•°æ®ã€å›¾å½¢å¯¹æ¯”
      */
     private Action historyData, graphicsData;
     /**
-     * ÏµÍ³¹ÜÀí²Ëµ¥£º»ñÈ¡Êı¾İ¡¢ÓÃ»§¹ÜÀí¡¢Êı¾İ±¸·İ¡¢Ô¶³ÌÊı¾İÔ´ÅäÖÃ¡¢ĞÂÔöÄê¶È
+     * ç³»ç»Ÿç®¡ç†èœå•ï¼šè·å–æ•°æ®ã€ç”¨æˆ·ç®¡ç†ã€æ•°æ®å¤‡ä»½ã€è¿œç¨‹æ•°æ®æºé…ç½®ã€æ–°å¢å¹´åº¦
      */
     private DataBak getServerData, userManage, dataBak, remoteDataSourceConfig, addNewYear;
     
     /**
-     * °ïÖú²Ëµ¥: ¹ØÓÚÏµÍ³
+     * å¸®åŠ©èœå•: å…³äºç³»ç»Ÿ
      */
     private Action aboutSystem;
     /**
-     * ¹¤¾ßÀ¸: ÓÃ»§×¢Ïú¡¢ÔÚÏßÉı¼¶
+     * å·¥å…·æ : ç”¨æˆ·æ³¨é”€ã€åœ¨çº¿å‡çº§
      */
     private Action logOff, update;
     
@@ -49,8 +49,8 @@ public class ApplicationActionBarAdvisor extends ActionBarAdvisor {
 
 	protected void makeActions(IWorkbenchWindow window) {
 		welcomeAction = ActionFactory.INTRO.create(window);
-		welcomeAction.setText("»¶Ó­Ê¹ÓÃ");
-		welcomeAction.setAccelerator(SWT.ALT + 87);	//¿ì½İ¼ü ALT+W
+		welcomeAction.setText("æ¬¢è¿ä½¿ç”¨");
+		welcomeAction.setAccelerator(SWT.ALT + 87);	//å¿«æ·é”® ALT+W
 		register(welcomeAction);
 		
 		dataBak = new DataBak();

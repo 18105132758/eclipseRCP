@@ -1,22 +1,22 @@
 package com.zyj.jfcs.constants;
 /**
- * APP³£Á¿¶¨Òå
- * @author ÖÜêÅ¾ı
+ * APPå¸¸é‡å®šä¹‰
+ * @author å‘¨æ˜±å›
  *
  */
 public class AppConst {
 	/**
-	 * Ó¦ÓÃID£¬ ¶ÔÓ¦ plugin.xml µÄ overviewÊÓÍ¼ÖĞµÄID
+	 * åº”ç”¨IDï¼Œ å¯¹åº” plugin.xml çš„ overviewè§†å›¾ä¸­çš„ID
 	 */
 	public static final String APPLICATION_ID = "jfcs";
 	
 	/**
-	 * ¹ØÓÚÏµÍ³²Ëµ¥Ïî ID
+	 * å…³äºç³»ç»Ÿèœå•é¡¹ ID
 	 */
 	public static final String ACTION_ABOUT_SYSTEM = "com.zyj.jfcs.actions.aboutSystem";
 	
 	/**
-	 * ¹ØÓÚÏµÍ³²Ëµ¥Ïî ID
+	 * å…³äºç³»ç»Ÿèœå•é¡¹ ID
 	 */
 	public static final String ACTION_LOG_OFF = "com.zyj.jfcs.actions.logOff";
 }

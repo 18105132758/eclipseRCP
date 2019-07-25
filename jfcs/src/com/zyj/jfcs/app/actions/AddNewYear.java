@@ -8,15 +8,15 @@ import com.zyj.jfcs.constants.AppConst;
 import com.zyj.jfcs.constants.ImagePath;
 
 /**
- * ÏµÍ³¹ÜÀí²Ëµ¥£ºĞÂÔöÄê¶È
+ * ç³»ç»Ÿç®¡ç†èœå•ï¼šæ–°å¢å¹´åº¦
  */
 public class AddNewYear extends Action{
 
 	public AddNewYear() {
 		super();
 		setId("dataBak");
-		setText("Êı¾İ±¸·İ@Alt+D");	//Ö¸¶¨¿ì½İ¼ü
-		setToolTipText("Êı¾İ±¸·İ");
+		setText("æ•°æ®å¤‡ä»½@Alt+D");	//æŒ‡å®šå¿«æ·é”®
+		setToolTipText("æ•°æ®å¤‡ä»½");
 		setImageDescriptor(AbstractUIPlugin.imageDescriptorFromPlugin(AppConst.APPLICATION_ID, ImagePath.ACTION_DATA_BACK));
 	}
 

@@ -1,7 +1,7 @@
 package com.zyj.jfcs.app.actions;
 /**
- * ÏµÍ³¹ÜÀí²Ëµ¥£ºÓÃ»§¹ÜÀí
- * @author ÖÜêÅ¾ı
+ * ç³»ç»Ÿç”¨æˆ·ç®¡ç†
+ * @author å‘¨æ˜±å›
  *
  */
 public class UserManage {

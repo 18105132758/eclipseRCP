@@ -6,8 +6,8 @@ import org.eclipse.ui.plugin.AbstractUIPlugin;
 import com.zyj.jfcs.constants.AppConst;
 import com.zyj.jfcs.constants.ImagePath;
 /**
- * ¹ØÓÚÏµÍ³action
- * @author ÖÜêÅ¾ı
+ * å…³äºç³»ç»Ÿaction
+ * @author å‘¨æ˜±å›
  *
  */
 public class AboutSystem extends Action{
@@ -15,7 +15,7 @@ public class AboutSystem extends Action{
 	public AboutSystem() {
 		super();
 		setId(AppConst.ACTION_ABOUT_SYSTEM);
-		setText("¹ØÓÚ¾­·Ñ²âËãÏµÍ³@ALT+A");
+		setText("å…³äºç»è´¹æµ‹ç®—ç³»ç»Ÿ@ALT+A");
 		setImageDescriptor(AbstractUIPlugin.imageDescriptorFromPlugin(AppConst.APPLICATION_ID, ImagePath.ACTION_ABOUT_SYSTEM));
 	}
 

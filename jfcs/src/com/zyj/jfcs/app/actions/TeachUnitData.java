@@ -1,7 +1,7 @@
 package com.zyj.jfcs.app.actions;
 /**
- * ½ÌÑ§µ¥Î»Çé¿ö
- * @author ÖÜêÅ¾ı
+ * æ•™å­¦å•ä½æƒ…å†µ
+ * @author å‘¨æ˜±å›
  *
  */
 public class TeachUnitData {

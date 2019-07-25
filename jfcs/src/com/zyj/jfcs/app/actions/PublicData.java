@@ -1,7 +1,7 @@
 package com.zyj.jfcs.app.actions;
 /**
- * ¹«¹²²ÎÊıÉèÖÃ
- * @author ÖÜêÅ¾ı
+ * å…¬å…±å‚æ•°è®¾ç½®
+ * @author å‘¨æ˜±å›
  *
  */
 public class PublicData {

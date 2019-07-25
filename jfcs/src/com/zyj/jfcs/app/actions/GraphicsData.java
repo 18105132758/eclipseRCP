@@ -1,7 +1,7 @@
 package com.zyj.jfcs.app.actions;
 /**
- * ²âËãÊı¾İ²Ëµ¥£ºÍ¼ĞÎ¶Ô±È
- * @author ÖÜêÅ¾ı
+ * æµ‹ç®—æ•°æ®èœå•ï¼šå›¾å½¢å¯¹æ¯”
+ * @author å‘¨æ˜±å›
  *
  */
 public class GraphicsData {

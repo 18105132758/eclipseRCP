@@ -1,22 +1,21 @@
 package com.zyj.jfcs.app.actions;
 
 import org.eclipse.jface.action.Action;
-import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 
 import com.zyj.jfcs.constants.AppConst;
 import com.zyj.jfcs.constants.ImagePath;
 
 /**
- * ÏµÍ³¹ÜÀí²Ëµ¥£ºÔ¶³Ì Êı¾İÔ´ÅäÖÃ
+ * ç³»ç»Ÿç®¡ç†èœå•ï¼šè¿œç¨‹ æ•°æ®æºé…ç½®
  */
 public class RemoteDataSourceConfig extends Action{
 
 	public RemoteDataSourceConfig() {
 		super();
 		setId("dataBak");
-		setText("Êı¾İ±¸·İ@Alt+D");	//Ö¸¶¨¿ì½İ¼ü
-		setToolTipText("Êı¾İ±¸·İ");
+		setText("æ•°æ®å¤‡ä»½@Alt+D");	//æŒ‡å®šå¿«æ·é”®
+		setToolTipText("æ•°æ®å¤‡ä»½");
 		setImageDescriptor(AbstractUIPlugin.imageDescriptorFromPlugin(AppConst.APPLICATION_ID, ImagePath.ACTION_DATA_BACK));
 	}
 

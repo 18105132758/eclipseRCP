@@ -1,7 +1,7 @@
 package com.zyj.jfcs.app.actions;
 /**
- *  ²âËãÊı¾İ²Ëµ¥£ºÀúÊ·Êı¾İ
- * @author ÖÜêÅ¾ı
+ *  æµ‹ç®—æ•°æ®èœå•ï¼šå†å²æ•°æ®
+ * @author å‘¨æ˜±å›
  *
  */
 public class HistoryData {

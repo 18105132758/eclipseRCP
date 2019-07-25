@@ -2,17 +2,17 @@ package com.zyj.jfcs.constants;
 
 public class ImagePath {
 	/**
-	 * 数据备份按钮图标
+	 * 鏁版嵁澶囦唤鎸夐挳鍥炬爣
 	 */
 	public static final String ACTION_DATA_BACK = "icons/actions/dataBack.png";
 	
 	/**
-	 * 关于系统
+	 * 鍏充簬绯荤粺
 	 */
 	public static final String ACTION_ABOUT_SYSTEM = "icons/actions/aboutSystem.ico";
 	
 	/**
-	 * 注销
+	 * 娉ㄩ攢
 	 */
 	public static final String ACTION_LOG_OFF = "icons/actions/logOff.ico";
 	

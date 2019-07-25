@@ -7,8 +7,8 @@ import com.zyj.jfcs.constants.AppConst;
 import com.zyj.jfcs.constants.ImagePath;
 
 /**
- * ×¢ÏúAction
- * @author ÖÜêÅ¾ı
+ * æ³¨é”€Action
+ * @author å‘¨æ˜±å›
  *
  */
 public class LogOff extends Action{
@@ -16,8 +16,8 @@ public class LogOff extends Action{
 	public LogOff() {
 		super();
 		setId(AppConst.ACTION_LOG_OFF);
-		setText("ÓÃ»§×¢Ïú[&R]");
-		setToolTipText("ÓÃ»§×¢Ïú");
+		setText("ç”¨æˆ·æ³¨é”€[&R]");
+		setToolTipText("ç”¨æˆ·æ³¨é”€");
 		setImageDescriptor(AbstractUIPlugin.imageDescriptorFromPlugin(AppConst.APPLICATION_ID, ImagePath.ACTION_LOG_OFF));
 	}
 

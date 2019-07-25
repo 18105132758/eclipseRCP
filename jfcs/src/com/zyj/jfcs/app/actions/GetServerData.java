@@ -1,7 +1,7 @@
 package com.zyj.jfcs.app.actions;
 /**
- * ÏµÍ³¹ÜÀí²Ëµ¥£º»ñÈ¡Êı¾İ
- * @author ÖÜêÅ¾ı
+ * ç³»ç»Ÿç®¡ç†èœå•ï¼šè·å–æ•°æ®
+ * @author å‘¨æ˜±å›
  *
  */
 public class GetServerData {

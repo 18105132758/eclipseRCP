@@ -1,8 +1,8 @@
 package com.zyj.jfcs.app.actions;
 
 /**
- * ¹¤¾ßÀ¸£ºÔÚÏßÉı¼¶
- * @author ÖÜêÅ¾ı
+ * å·¥å…·æ ï¼šåœ¨çº¿å‡çº§
+ * @author å‘¨æ˜±å›
  *
  */
 public class Update {
