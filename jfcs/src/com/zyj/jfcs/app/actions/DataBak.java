@@ -1,7 +1,6 @@
 package com.zyj.jfcs.app.actions;
 
 import org.eclipse.jface.action.Action;
-import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 
 import com.zyj.jfcs.constants.AppConst;
