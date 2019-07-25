@@ -11,6 +11,12 @@ public class AppConst {
 	public static final String APPLICATION_ID = "jfcs";
 	
 	/**
+	 * 系统标题
+	 */
+	public static final String APPLICATION_TITLE = "高校经费测算系统";
+	
+	
+	/**
 	 * 关于系统菜单项 ID
 	 */
 	public static final String ACTION_ABOUT_SYSTEM = "com.zyj.jfcs.actions.aboutSystem";
