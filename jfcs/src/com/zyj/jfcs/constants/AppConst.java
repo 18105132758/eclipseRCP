@@ -25,4 +25,6 @@ public class AppConst {
 	 * 关于系统菜单项 ID
 	 */
 	public static final String ACTION_LOG_OFF = "com.zyj.jfcs.actions.logOff";
+	
+	public static final String ACTION_DATA_BACK = "com.zyj.jfcs.actions.databack";
 }
