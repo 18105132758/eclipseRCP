@@ -1,6 +1,7 @@
 package com.zyj.jfcs.app.actions;
 
 import org.eclipse.jface.action.Action;
+import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 
 import com.zyj.jfcs.constants.AppConst;
@@ -23,8 +24,8 @@ public class LogOff extends Action{
 
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
-		super.run();
+		//重启工作台
+		PlatformUI.getWorkbench().restart();
 	}
 
 }
