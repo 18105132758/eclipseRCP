@@ -1,10 +1,13 @@
 package com.zyj.jfcs.app;
 
 import org.eclipse.jface.action.Action;
+import org.eclipse.jface.action.ICoolBarManager;
 import org.eclipse.jface.action.IMenuManager;
+import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.action.MenuManager;
+import org.eclipse.jface.action.Separator;
+import org.eclipse.jface.action.ToolBarManager;
 import org.eclipse.swt.SWT;
-import org.eclipse.ui.IWorkbenchActionConstants;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.actions.ActionFactory;
 import org.eclipse.ui.actions.ActionFactory.IWorkbenchAction;
@@ -23,6 +26,7 @@ import com.zyj.jfcs.app.actions.RemoteDataSourceConfig;
 import com.zyj.jfcs.app.actions.TeachUnitData;
 import com.zyj.jfcs.app.actions.Update;
 import com.zyj.jfcs.app.actions.UserManage;
+import com.zyj.jfcs.constants.AppConst;
 
 public class ApplicationActionBarAdvisor extends ActionBarAdvisor {
 
@@ -112,12 +116,64 @@ public class ApplicationActionBarAdvisor extends ActionBarAdvisor {
 	}
 
 	protected void fillMenuBar(IMenuManager menuBar) {
+		/**
+		 * 	父级菜单项使用MenuManager？？
+		 */
+		//创建基础数据一级菜单
+		MenuManager baseDataMenu = new MenuManager("基础数据[&B]", AppConst.MENU_BASE_DATA_ID);
+		menuBar.add(baseDataMenu);
+			//向基础数据填充子菜单项
+		baseDataMenu.add(publicData);
+		baseDataMenu.add(teachUnitData);
 		
-		MenuManager helpMenu = new MenuManager("&Help", IWorkbenchActionConstants.M_HELP);
+		//创建测算数据一级菜单
+		MenuManager calcDataMenu = new MenuManager("测算数据[&C]", AppConst.MENU_CALC_DATA_ID);
+		menuBar.add(calcDataMenu);
+		calcDataMenu.add(historyData);
+		calcDataMenu.add(graphicsData);
+		
+		//创建系统管理一级菜单
+		MenuManager sysManageMenu = new MenuManager("系统管理[]&M", AppConst.MENU_SYS_MANAGE_ID);
+		menuBar.add(sysManageMenu);
+		sysManageMenu.add(getServerData);
+		sysManageMenu.add(userManage);
+		sysManageMenu.add(dataBak);
+		sysManageMenu.add(remoteDataSourceConfig);
+		sysManageMenu.add(addNewYear);
+		sysManageMenu.add(update);
+		
+		//创建帮助一级菜单
+		MenuManager helpMenu = new MenuManager("帮助&[H]", AppConst.MENU_HELP_ID);
 		menuBar.add(helpMenu);
 		helpMenu.add(welcomeAction);
-
-		menuBar.add(dataBak);
+		helpMenu.add(helpInfo);
+		helpMenu.add(aboutSystem);
 	}
 
+	@Override
+	protected void fillCoolBar(ICoolBarManager coolBar) {
+		super.fillCoolBar(coolBar);
+		/*
+		 * 	工具栏的填充在 fillCollBar方法中完成，工具栏的创建需要一个工具栏管理器： ICoolBarManager
+		 * 	ICoolBarManager负责工具栏的分类管理，并不管里具体的action，而是将责任委托给具体的子管理器-IToolBarManager
+		 * 
+		 * 	也可以使用配置扩展点的方式创建工具栏
+		 */
+		//FLAT: 扁平化工具栏    SHADOW_OUT：在工具栏-菜单栏之间增加一条分隔线
+		IToolBarManager toolBar = new ToolBarManager(SWT.FLAT | SWT.SHADOW_OUT);
+		coolBar.add(toolBar);
+		toolBar.add(publicData);
+		toolBar.add(teachUnitData);
+		toolBar.add(new Separator());
+		toolBar.add(historyData);
+		toolBar.add(graphicsData);
+		toolBar.add(new Separator());
+		toolBar.add(getServerData);
+		toolBar.add(dataBak);
+		toolBar.add(logOff);
+		toolBar.add(new Separator());
+		toolBar.add(helpInfo);
+	}
+
+	
 }

@@ -26,5 +26,33 @@ public class AppConst {
 	 */
 	public static final String ACTION_LOG_OFF = "com.zyj.jfcs.actions.logOff";
 	
+	/**
+	 * 数据备份action ID
+	 */
 	public static final String ACTION_DATA_BACK = "com.zyj.jfcs.actions.databack";
+
+	/**
+	 * 基础数据 菜单栏 ID
+	 */
+	public static final String MENU_BASE_DATA_ID = "com.zyj.jfcs.menu.basedata";
+
+	/**
+	 * 	测算数据 菜单栏 ID
+	 */
+	public static final String MENU_CALC_DATA_ID = "com.zyj.jfcs.menu.calcdata";
+	
+	/**
+	 * 	系统管理 菜单栏 ID
+	 */
+	public static final String MENU_SYS_MANAGE_ID = "com.zyj.jfcs.menu.sysManage";
+
+	/**
+	 * 	系统管理 菜单栏 ID
+	 */
+	public static final String MENU_HELP_ID = "com.zyj.jfcs.menu.help";
+
+	
+
+
+
 }

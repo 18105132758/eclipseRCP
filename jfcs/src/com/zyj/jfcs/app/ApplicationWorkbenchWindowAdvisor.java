@@ -30,8 +30,8 @@ public class ApplicationWorkbenchWindowAdvisor extends WorkbenchWindowAdvisor {
         IWorkbenchWindowConfigurer configurer = getWindowConfigurer();
         //设置初始大小： 700 * 550
         configurer.setInitialSize(new Point(700, 550));
-        //不显示 工具栏
-        configurer.setShowCoolBar(false);
+        //显示 工具栏
+        configurer.setShowCoolBar(true);
         //显示状态栏
         configurer.setShowStatusLine(true);
         //窗口只显示：最小化、关闭按钮
