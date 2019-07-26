@@ -13,9 +13,9 @@ public class RemoteDataSourceConfig extends Action{
 
 	public RemoteDataSourceConfig() {
 		super();
-		setId("dataBak");
-		setText("数据备份@Alt+D");	//指定快捷键
-		setToolTipText("数据备份");
+		setId(AppConst.ACTION_DATA_SOURCE_CFG);
+		setText("数据源配置@Alt+D");	//指定快捷键
+		setToolTipText("远程数据源配置");
 		setImageDescriptor(AbstractUIPlugin.imageDescriptorFromPlugin(AppConst.APPLICATION_ID, ImagePath.ACTION_DATA_BACK));
 	}
 
