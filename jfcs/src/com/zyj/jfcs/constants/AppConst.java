@@ -15,6 +15,19 @@ public class AppConst {
 	 */
 	public static final String APPLICATION_TITLE = "高校经费测算系统";
 	
+	/**
+	 * 	经费概览视图ID
+	 */
+	public static final String VIEW_PIE_DIAGRAM_ID  = "com.zyj.jfcs.app.ui.piediagram";
+	/**
+	 * 	教学单位课程明细视图ID
+	 */
+	public static final String VIEW_TEACH_UNIT_CLASS__ID  = "com.zyj.jfcs.app.ui.teachunitclass";
+	/**
+	 * 	经费概览视图ID
+	 */
+	public static final String VIEW_TEACH_UNIT_NAME_ID  = "com.zyj.jfcs.app.ui.teachunitname";
+	
 	
 	/**
 	 *  远程数据源配置菜单项 ID

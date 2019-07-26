@@ -57,5 +57,29 @@
          </presentation>
       </config>
    </extension>
+   <extension
+         point="org.eclipse.ui.views">
+      <view
+            allowMultiple="false"
+            class="com.zyj.jfcs.app.ui.TeachUnitName"
+            id="com.zyj.jfcs.app.ui.teachunitname"
+            name="教学单位"
+            restorable="true">
+      </view>
+      <view
+            allowMultiple="false"
+            class="com.zyj.jfcs.app.ui.PieDiagram"
+            id="com.zyj.jfcs.app.ui.piediagram"
+            name="经费概览"
+            restorable="true">
+      </view>
+      <view
+            allowMultiple="false"
+            class="com.zyj.jfcs.app.ui.TeachUnitClass"
+            id="com.zyj.jfcs.app.ui.teachunitclass"
+            name="教学单位课程明细"
+            restorable="true">
+      </view>
+   </extension>
 
 </plugin>
