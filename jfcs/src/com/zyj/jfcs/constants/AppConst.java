@@ -24,7 +24,7 @@ public class AppConst {
 	 */
 	public static final String VIEW_TEACH_UNIT_CLASS__ID  = "com.zyj.jfcs.app.ui.teachunitclass";
 	/**
-	 * 	经费概览视图ID
+	 * 	教学单位视图ID
 	 */
 	public static final String VIEW_TEACH_UNIT_NAME_ID  = "com.zyj.jfcs.app.ui.teachunitname";
 	
@@ -94,7 +94,7 @@ public class AppConst {
 	public static final String MENU_SYS_MANAGE_ID = "com.zyj.jfcs.menu.sysManage";
 
 	/**
-	 * 	系统管理 菜单栏 ID
+	 * 	帮助 菜单栏 ID
 	 */
 	public static final String MENU_HELP_ID = "com.zyj.jfcs.menu.help";
 

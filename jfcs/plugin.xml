@@ -15,8 +15,8 @@
          point="org.eclipse.ui.perspectives">
       <perspective
             class="com.zyj.jfcs.app.Perspective"
-            name="RCP Perspective"
-            id="jfcs.perspective">
+            name="rcpPerspective"
+            id="com.zyj.jfcs.app.perspective"> <!-- 这里ID必需要使用累的全限定名称 -->
       </perspective>
    </extension>
    <extension
@@ -64,7 +64,7 @@
             class="com.zyj.jfcs.app.ui.TeachUnitName"
             id="com.zyj.jfcs.app.ui.teachunitname"
             name="教学单位"
-            restorable="true">
+            restorable="true">	
       </view>
       <view
             allowMultiple="false"

@@ -19,4 +19,19 @@ public class ImagePath {
 	public static final String ACTION_LOG_OFF = ICON_PATH + "actions/logOff.ico";
 	
 	
+	/**
+	 * 经费概览视图图标
+	 */
+	public static final String VIEW_PIE_DIAGRAM_ICO = ICON_PATH + "views/pieDiagram.ico";
+	
+	/**
+	 * 教学单位视图图标
+	 */
+	public static final String VIEW_TEACH_UNIT_ICO = ICON_PATH + "views/teachUnit.ico";
+	
+	/**
+	 * 教学单位课程明细视图图标
+	 */
+	public static final String VIEW_TEACH_UNIT_CLASS_ICO = ICON_PATH + "views/teachUnitClass.ico";
+	
 }
