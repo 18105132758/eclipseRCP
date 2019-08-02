@@ -10,10 +10,16 @@ import org.eclipse.ui.application.IActionBarConfigurer;
 import org.eclipse.ui.application.IWorkbenchWindowConfigurer;
 import org.eclipse.ui.application.WorkbenchWindowAdvisor;
 
+import com.zyj.jfcs.app.sys.HookSysTray;
 import com.zyj.jfcs.constants.AppConst;
 
 public class ApplicationWorkbenchWindowAdvisor extends WorkbenchWindowAdvisor {
 
+	/**
+	 * 系统托盘
+	 */
+	private HookSysTray hookSysTray;
+	
     public ApplicationWorkbenchWindowAdvisor(IWorkbenchWindowConfigurer configurer) {
         super(configurer);
     }
@@ -50,7 +56,30 @@ public class ApplicationWorkbenchWindowAdvisor extends WorkbenchWindowAdvisor {
 		Rectangle frameSize = shell.getBounds();	//窗口尺寸
 		//设置窗口居中， setLocation方法设置窗口左上角的坐标， 屏幕坐标系是以屏幕左上角为原点，向右(OX)、向下(OY)为正
 		shell.setLocation((screeSize.width - frameSize.width) / 2, (screeSize.height - frameSize.height) / 2);
+		
+		//创建系统托盘
+		createSystemTray();
 	}
     
-    
+
+	
+	@Override
+	public boolean preWindowShellClose() {
+		hookSysTray.windowMinimized(getWindowConfigurer().getWindow().getShell());
+		return false;	//不关闭窗口
+	}
+
+	/**
+	 * 创建托盘
+	 */
+	private void createSystemTray() {
+		hookSysTray = new HookSysTray();
+		hookSysTray.createSysTray(getWindowConfigurer().getWindow());
+	}
+
+	@Override
+	public void dispose() {
+		hookSysTray.dispose();
+	}
+	
 }

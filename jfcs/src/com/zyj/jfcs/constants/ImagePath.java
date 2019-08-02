@@ -33,5 +33,16 @@ public class ImagePath {
 	 * 教学单位课程明细视图图标
 	 */
 	public static final String VIEW_TEACH_UNIT_CLASS_ICO = ICON_PATH + "views/teachUnitClass.ico";
+
+	
+	/**
+	 * 托盘图标
+	 */
+	public static final String VIEW_SYSTEM_TRAY_ITEM_ICO = ICON_PATH + "tray/sysTray.ico";
+	/**
+	 * 托盘弹出菜单：退出系统  功能图标
+	 */
+	public static final String VIEW_EXIT_ITEM_ICO = ICON_PATH + "tray/sysExit.ico";
+	
 	
 }

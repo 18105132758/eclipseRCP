@@ -7,6 +7,8 @@ import org.eclipse.ui.application.IWorkbenchWindowConfigurer;
 import org.eclipse.ui.application.WorkbenchAdvisor;
 import org.eclipse.ui.application.WorkbenchWindowAdvisor;
 
+import com.zyj.jfcs.app.sys.HookSysTray;
+
 public class ApplicationWorkbenchAdvisor extends WorkbenchAdvisor {
 
 	private static final String PERSPECTIVE_ID = "com.zyj.jfcs.app.perspective";
@@ -31,4 +33,5 @@ public class ApplicationWorkbenchAdvisor extends WorkbenchAdvisor {
 	public String getInitialWindowPerspectiveId() {
 		return PERSPECTIVE_ID;
 	}
+
 }
