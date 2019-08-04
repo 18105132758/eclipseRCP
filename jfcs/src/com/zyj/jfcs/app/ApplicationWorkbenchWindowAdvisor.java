@@ -66,7 +66,6 @@ public class ApplicationWorkbenchWindowAdvisor extends WorkbenchWindowAdvisor {
 	
 	@Override
 	public boolean preWindowShellClose() {
-//		hookSysTray.windowMinimized(getWindowConfigurer().getWindow().getShell());
 		System.out.println("shell going to closed!" );  
 		systemTrayMaster.minimizeWindow();
 		return false;	//不关闭窗口
@@ -81,14 +80,12 @@ public class ApplicationWorkbenchWindowAdvisor extends WorkbenchWindowAdvisor {
 	private void createSystemTray() {
 		systemTrayMaster = new SystemTrayMaster();
 		systemTrayMaster.createSystemTray();
-		
-//		hookSysTray = new HookSysTray();
-//		hookSysTray.createSysTray(getWindowConfigurer().getWindow());
 	}
 
 	@Override
 	public void dispose() {
-		hookSysTray.dispose();
+		//销毁托盘资源
+		systemTrayMaster.dispose();
 	}
 
 	@Override

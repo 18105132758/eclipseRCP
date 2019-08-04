@@ -18,7 +18,11 @@ import org.eclipse.ui.plugin.AbstractUIPlugin;
 
 import com.zyj.jfcs.constants.AppConst;
 import com.zyj.jfcs.constants.ImagePath;
-
+/**
+ * 系统托盘相关类，负责初始化系统托盘及相关功能
+ * @author 周昱君
+ *
+ */
 public class SystemTrayMaster implements SelectionListener, Listener{
 	/**
 	 * 内部类，负责从最小化 还原窗口
@@ -44,7 +48,15 @@ public class SystemTrayMaster implements SelectionListener, Listener{
 	 * 恢复监听器
 	 */
 	private RestoreWindowListener restoreWindowListener;
+	/**
+	 * 托盘项目
+	 */
+	private TrayItem trayItem;
 	
+	/**
+	 * 托盘图标
+	 */
+	private Image trayImage = null;
 	
 	public SystemTrayMaster() {
 		super();
@@ -60,13 +72,11 @@ public class SystemTrayMaster implements SelectionListener, Listener{
 	
 	@Override
 	public void widgetSelected(SelectionEvent e) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void widgetDefaultSelected(SelectionEvent e) {
-		// TODO Auto-generated method stub
 		
 	}
 	
@@ -128,6 +138,7 @@ public class SystemTrayMaster implements SelectionListener, Listener{
 			item.removeSelectionListener(this.restoreWindowListener);  
 		    menuItems[i].dispose();   
 		}
+		menuItems = new MenuItem[0];
 	}
 	
 	
@@ -135,6 +146,20 @@ public class SystemTrayMaster implements SelectionListener, Listener{
 	public void handleEvent(Event event) {
 		showMenu();
 	}
+	
+	/**
+	 * 销毁托盘相关资源
+	 */
+	public void dispose() {
+		clearItems();
+		if(trayItem != null) {
+			trayItem.dispose();
+		}
+		if(trayImage != null) {
+			trayImage.dispose();
+		}
+	}
+	
 
 	/**
 	 * 创建系统托盘项
@@ -143,19 +168,19 @@ public class SystemTrayMaster implements SelectionListener, Listener{
 		//获取系统托盘
 		Tray tray = Display.getDefault().getSystemTray();
 		//创建托盘项目
-		TrayItem trayItem = new TrayItem(tray, SWT.NONE);
+		trayItem = new TrayItem(tray, SWT.NONE);
 		//指定名称和提示问题
 		trayItem.setText("经费测算");
 		trayItem.setToolTipText("经费测算");
 		//创建托盘图标
-		Image image =  AbstractUIPlugin.imageDescriptorFromPlugin(AppConst.APPLICATION_ID, ImagePath.VIEW_SYSTEM_TRAY_ITEM_ICO)
+		trayImage =  AbstractUIPlugin.imageDescriptorFromPlugin(AppConst.APPLICATION_ID, ImagePath.VIEW_SYSTEM_TRAY_ITEM_ICO)
 				.createImage();
-		trayItem.setImage(image);
+		trayItem.setImage(trayImage);
 		//增加单击监听处理
 		trayItem.addSelectionListener(this );  
 		//增加右键监听处理：弹出菜单
 		trayItem.addListener(SWT.MenuDetect, this );   
-		
+		//创建菜单
 		menu = new  Menu(getShell(), SWT.POP_UP);  
 	}
 }
