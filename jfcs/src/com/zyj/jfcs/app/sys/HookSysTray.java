@@ -6,6 +6,7 @@ package com.zyj.jfcs.app.sys;
  */
 
 import org.eclipse.jface.action.Action;
+import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ShellAdapter;
@@ -73,7 +74,6 @@ public class HookSysTray {
 					shell.setVisible(true);
 					//
 					shell.setMinimized(false);
-					
 				}
 			}
 		});
@@ -100,7 +100,7 @@ public class HookSysTray {
 			 * @param manager
 			 * @param window
 			 */
-			private void fillTrayItem(MenuManager manager, IWorkbenchWindow window) {
+			private void fillTrayItem(IMenuManager manager, IWorkbenchWindow window) {
 				//创建退出系统菜单项
 				Action exitSystem = new Action("退出系统[&E]", AbstractUIPlugin.imageDescriptorFromPlugin(AppConst.APPLICATION_ID,
 						ImagePath.VIEW_EXIT_ITEM_ICO)) {
@@ -135,6 +135,8 @@ public class HookSysTray {
 				.createImage();
 		//设置图标
 		trayItem.setImage(trayImage);
+		trayItem.setText("经费测算");
+		trayItem.setToolTipText("经费测算");
 	}
 	
 	/**

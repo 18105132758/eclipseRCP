@@ -11,6 +11,7 @@ import org.eclipse.ui.application.IWorkbenchWindowConfigurer;
 import org.eclipse.ui.application.WorkbenchWindowAdvisor;
 
 import com.zyj.jfcs.app.sys.HookSysTray;
+import com.zyj.jfcs.app.sys.SystemTrayMaster;
 import com.zyj.jfcs.constants.AppConst;
 
 public class ApplicationWorkbenchWindowAdvisor extends WorkbenchWindowAdvisor {
@@ -65,21 +66,35 @@ public class ApplicationWorkbenchWindowAdvisor extends WorkbenchWindowAdvisor {
 	
 	@Override
 	public boolean preWindowShellClose() {
-		hookSysTray.windowMinimized(getWindowConfigurer().getWindow().getShell());
+//		hookSysTray.windowMinimized(getWindowConfigurer().getWindow().getShell());
+		System.out.println("shell going to closed!" );  
+		systemTrayMaster.minimizeWindow();
 		return false;	//不关闭窗口
 	}
 
+	
+	private SystemTrayMaster systemTrayMaster;
+	
 	/**
 	 * 创建托盘
 	 */
 	private void createSystemTray() {
-		hookSysTray = new HookSysTray();
-		hookSysTray.createSysTray(getWindowConfigurer().getWindow());
+		systemTrayMaster = new SystemTrayMaster();
+		systemTrayMaster.createSystemTray();
+		
+//		hookSysTray = new HookSysTray();
+//		hookSysTray.createSysTray(getWindowConfigurer().getWindow());
 	}
 
 	@Override
 	public void dispose() {
 		hookSysTray.dispose();
 	}
+
+	@Override
+	public void postWindowClose() {
+		System.out.println("closed!" );  
+	}
+	
 	
 }
