@@ -23,6 +23,8 @@ public class ApplicationWorkbenchWindowAdvisor extends WorkbenchWindowAdvisor {
 	
     public ApplicationWorkbenchWindowAdvisor(IWorkbenchWindowConfigurer configurer) {
         super(configurer);
+        AppCache.DISPLAY = getWindowConfigurer().getWindow().getShell().getDisplay();
+        AppCache.iWorkbenchWindow = getWindowConfigurer().getWindow();
     }
 
     public ActionBarAdvisor createActionBarAdvisor(IActionBarConfigurer configurer) {
