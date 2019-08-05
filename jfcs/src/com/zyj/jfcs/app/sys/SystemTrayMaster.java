@@ -213,6 +213,6 @@ public class SystemTrayMaster implements SelectionListener, Listener{
 					}
 				});
 			}
-		}, 0, 2 * 1000);
+		}, 0, 20 * 1000);
 	}
 }
