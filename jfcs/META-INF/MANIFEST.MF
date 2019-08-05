@@ -9,7 +9,8 @@ Require-Bundle: org.eclipse.ui.intro,
  org.eclipse.ui,
  org.apache.felix.scr,
  org.eclipse.equinox.util,
- org.eclipse.equinox.event
+ org.eclipse.equinox.event,
+ org.eclipse.ant.core;bundle-version="3.5.300"
 Automatic-Module-Name: jfcs
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ClassPath: .,
