@@ -79,7 +79,8 @@ public class ApplicationWorkbenchWindowAdvisor extends WorkbenchWindowAdvisor {
 	 */
 	private void createSystemTray() {
 		systemTrayMaster = new SystemTrayMaster();
-		systemTrayMaster.createSystemTray();
+		
+		systemTrayMaster.createSystemTray(getWindowConfigurer().getWindow());
 	}
 
 	@Override

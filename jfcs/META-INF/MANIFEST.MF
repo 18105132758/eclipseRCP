@@ -12,3 +12,5 @@ Require-Bundle: org.eclipse.ui.intro,
  org.eclipse.equinox.event
 Automatic-Module-Name: jfcs
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-ClassPath: .,
+ lib/commons-lang3-3.9.jar

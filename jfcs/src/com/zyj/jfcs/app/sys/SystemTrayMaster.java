@@ -1,5 +1,8 @@
 package com.zyj.jfcs.app.sys;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -11,10 +14,11 @@ import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.ToolTip;
 import org.eclipse.swt.widgets.Tray;
 import org.eclipse.swt.widgets.TrayItem;
+import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.plugin.AbstractUIPlugin;
 
 import com.zyj.jfcs.constants.AppConst;
 import com.zyj.jfcs.constants.ImagePath;
@@ -164,7 +168,7 @@ public class SystemTrayMaster implements SelectionListener, Listener{
 	/**
 	 * 创建系统托盘项
 	 */
-	public void createSystemTray() {
+	public void createSystemTray(IWorkbenchWindow window) {
 		//获取系统托盘
 		Tray tray = Display.getDefault().getSystemTray();
 		//创建托盘项目
@@ -173,8 +177,7 @@ public class SystemTrayMaster implements SelectionListener, Listener{
 		trayItem.setText("经费测算");
 		trayItem.setToolTipText("经费测算");
 		//创建托盘图标
-		trayImage =  AbstractUIPlugin.imageDescriptorFromPlugin(AppConst.APPLICATION_ID, ImagePath.VIEW_SYSTEM_TRAY_ITEM_ICO)
-				.createImage();
+		trayImage =  CacheImage.getImage(AppConst.APPLICATION_ID, ImagePath.VIEW_SYSTEM_TRAY_ITEM_ICO);
 		trayItem.setImage(trayImage);
 		//增加单击监听处理
 		trayItem.addSelectionListener(this );  
@@ -182,5 +185,34 @@ public class SystemTrayMaster implements SelectionListener, Listener{
 		trayItem.addListener(SWT.MenuDetect, this );   
 		//创建菜单
 		menu = new  Menu(getShell(), SWT.POP_UP);  
+		
+		
+		//增加气泡提示文字: 每10秒提示一次
+		Timer timer = new Timer();
+		timer.schedule(new TimerTask() {
+			@Override
+			public void run() {
+//				System.out.println(Display.getCurrent());
+//				System.out.println(Display.getDefault());
+//				Display display = PlatformUI.getWorkbench().getDisplay();
+//				System.out.println("1" + display);
+//				System.out.println("2" + display.getActiveShell());
+				
+				Display display = window.getShell().getDisplay();
+				display.asyncExec(new Runnable() {
+					@Override
+					public void run() {
+						System.out.println("起爆文字。。。。。。。。。。");
+						ToolTip tip = new ToolTip(window.getShell(), 
+								SWT.BALLOON | SWT.ICON_INFORMATION);
+//						tip.setAutoHide(true);	//自动隐藏气泡提示文字
+						tip.setMessage(AppConst.APPLICATION_TITLE);
+						tip.setText("欢迎使用");
+						trayItem.setToolTip(tip);
+						tip.setVisible(true);
+					}
+				});
+			}
+		}, 0, 2 * 1000);
 	}
 }
