@@ -4,7 +4,6 @@ import org.eclipse.core.runtime.IPlatformRunnable;
 import org.eclipse.equinox.app.IApplication;
 import org.eclipse.equinox.app.IApplicationContext;
 import org.eclipse.jface.window.Window;
-import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.PlatformUI;
@@ -20,8 +19,8 @@ public class Application implements IApplication {
 	public Object start(IApplicationContext context) {
 		Display display = PlatformUI.createDisplay();
 		try {
-			LoginDialog login = new LoginDialog(null, SWT.NONE);
-			if(Integer.valueOf(login.open().toString()) != Window.OK) {
+			LoginDialog login = new LoginDialog(null);
+			if(login.open() != Window.OK) {
 				return IPlatformRunnable.EXIT_OK;
 			}
 			
