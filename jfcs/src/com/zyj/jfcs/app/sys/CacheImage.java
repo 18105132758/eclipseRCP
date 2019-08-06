@@ -12,6 +12,8 @@ import java.util.Map;
 import org.apache.commons.lang3.StringUtils;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
+
+import com.zyj.jfcs.constants.AppConst;
 /**
  * 	图像缓存工具类：负责图像的创建、缓存、销毁等工作
  * @author zhouyj
@@ -48,6 +50,15 @@ public class CacheImage {
 			imageMap.put(imagePath, image);
 		}
 		return image;
+	}
+	
+	/**
+	 * 获取应用图片
+	 * @param imagePath
+	 * @return
+	 */
+	public static Image getAppImage(String imagePath) {
+		return getImage(AppConst.APPLICATION_ID, imagePath);
 	}
 	
 	/**

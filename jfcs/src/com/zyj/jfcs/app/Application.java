@@ -1,6 +1,5 @@
 package com.zyj.jfcs.app;
 
-import org.eclipse.core.runtime.IPlatformRunnable;
 import org.eclipse.equinox.app.IApplication;
 import org.eclipse.equinox.app.IApplicationContext;
 import org.eclipse.jface.window.Window;
@@ -19,11 +18,22 @@ public class Application implements IApplication {
 	public Object start(IApplicationContext context) {
 		Display display = PlatformUI.createDisplay();
 		try {
+			//关闭闪屏画面
+			context.applicationRunning();
+//			Platform.endSplash();	//此方法已经过时
+			//创建登录界面
 			LoginDialog login = new LoginDialog(null);
+			/*
+			 * 打开登录界面，并等待用户登录，获取登录结果；
+			 * Window.OK表示登录成功
+			 * 这里返回IApplication.EXIT_OK表示登录失败，退出系统，
+			 * 这里可以返回任意内容，都可以结束应用，因此此时还没有创建工作台
+			 */
 			if(login.open() != Window.OK) {
-				return IPlatformRunnable.EXIT_OK;
+				return IApplication.EXIT_OK;
 			}
 			
+			//创建工作台
 			int returnCode = PlatformUI.createAndRunWorkbench(display, new ApplicationWorkbenchAdvisor());
 			if (returnCode == PlatformUI.RETURN_RESTART) {
 				return IApplication.EXIT_RESTART;

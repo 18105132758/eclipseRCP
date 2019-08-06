@@ -39,10 +39,26 @@ public class ImagePath {
 	 * 托盘图标
 	 */
 	public static final String VIEW_SYSTEM_TRAY_ITEM_ICO = ICON_PATH + "tray/sysTray.ico";
+	
 	/**
 	 * 托盘弹出菜单：退出系统  功能图标
 	 */
 	public static final String VIEW_EXIT_ITEM_ICO = ICON_PATH + "tray/sysExit.ico";
+
 	
+	/**
+	 * 登录界面用户名图标
+	 */
+	public static final String LOGIN_USERNAME_ICO = ICON_PATH + "login/userName.ico";
+	
+	/**
+	 * 登录界面密码图标
+	 */
+	public static final String LOGIN_PASSWORD_ICO = ICON_PATH + "login/password.ico";
+	
+	/**
+	 * 登录界面标题图标
+	 */
+	public static final String LOGIN_TITLE_ICO = ICON_PATH + "login/loginTitle.ico";
 	
 }
