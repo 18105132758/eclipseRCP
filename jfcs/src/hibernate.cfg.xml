@@ -8,7 +8,7 @@
         <property name="hibernate.connection.driver_class">org.h2.Driver</property>
         <property name="hibernate.connection.username">sa</property>
         <property name="hibernate.connection.password"></property>
-        <property name="hibernate.connection.url">jdbc:h2:mem:./db/jfcsDb</property>
+        <property name="hibernate.connection.url">jdbc:h2:./db/jfcsDb</property>
 
 		<!-- 数据库方言 -->
 		<property name="hibernate.dialect">org.hibernate.dialect.H2Dialect</property>
@@ -33,16 +33,9 @@
         <property name="test-assertable-setting">value</property>
         <property name="hibernate.cache.region.factory_class">org.hibernate.cache.internal.NoCachingRegionFactory</property>
         
-        
-        
+		<!-- 指定实体类， 因为在实体类中使用注解进行ORM配置，所以这里直接配置全限定类名即可 -->        
         <mapping class = "com.zyj.test.HibernateDemo.Item"/>
         
-       <!--  <mapping class="org.hibernate.jpa.test.Item"/>
-        <mapping class="org.hibernate.jpa.test.Cat"/>
-        <mapping class="org.hibernate.jpa.test.Kitten"/>
-        <mapping class="org.hibernate.jpa.test.Distributor"/>
-        <class-cache class="org.hibernate.jpa.test.Item" usage="read-write"/>
-        <collection-cache collection="org.hibernate.jpa.test.Item.distributors" usage="read-write" region="RegionName"/> -->
         <event type="pre-insert"/>
 	</session-factory>
 </hibernate-configuration>
