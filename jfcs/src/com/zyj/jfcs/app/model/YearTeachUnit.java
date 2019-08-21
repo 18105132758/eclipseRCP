@@ -7,84 +7,119 @@ package com.zyj.jfcs.app.model;
 
 import java.math.BigDecimal;
 
-public class YearTeachUnit {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 
+import org.hibernate.annotations.GenericGenerator;
+
+@Entity
+@Table(name = "JFCS_YEAR_TEACH_UNIT")
+public class YearTeachUnit {
+	@Id
+	@GeneratedValue(generator="increment")
+	@GenericGenerator(name="increment" , strategy = "increment")
 	private int id;
 	
+	@Column(name = "YEAR")
 	private int year;
 	
+	@Column(name = "UNIT_ID", length = 50)
 	private String unitId;
 	/**
 	 * 是否有专业课
 	 */
+	@Column(name = "HAS_ZYK", length = 10)
 	private String haszyk;
 	/**
 	 * 是否有公共课
 	 */
+	
+	@Column(name = "HAS_GGK", length = 10)
 	private String hasggk;
 	/**
 	 * 师生比
 	 */
+	@Column(name = "SSB")
 	private int ssb;
 	/**
 	 * 学费应收金额
 	 */
+	@Column(name = "JFYS")
 	private BigDecimal jfys;
 	/**
 	 * 学费实收金额
 	 */
+	@Column(name = "JFSS")
 	private BigDecimal jfss;
 	/**
 	 * 教学业务费比例
 	 */
+	@Column(name = "JXYW_PER")
 	private BigDecimal jxywper;
 	/**
 	 * 教学管理费比例
 	 */
+	@Column(name = "JXGL_PER")
 	private BigDecimal jxglper;
 	/**
 	 * 教学研究费比例
 	 */
+	@Column(name = "JXYJ_PER")
 	private BigDecimal jxyjper;
 	/**
 	 * 师资培养费比例
 	 */
-	private BigDecimal sjpyper;
+	@Column(name = "SZPY_PER")
+	private BigDecimal szpyper;
 	/**
 	 * 教授A等人数
 	 */
+	@Column(name = "TA1")
 	private BigDecimal ta1;
 	/**
 	 * 教授B等人数
 	 */
+	@Column(name = "TA2")
 	private BigDecimal ta2;
 	/**
 	 * 教授C等人数
 	 */
+	@Column(name = "TA3")
 	private BigDecimal ta3;
 	/**
 	 * 教授D等人数
 	 */
+	@Column(name = "TA4")
 	private BigDecimal ta4;
 	/**
 	 * 副教授A等人数
 	 */
+	@Column(name = "TA5")
 	private BigDecimal ta5;
 	/**
 	 * 副教授B等人数
 	 */
+	@Column(name = "TA6")
 	private BigDecimal ta6;
 	/**
 	 * 讲师人数
 	 */
+	@Column(name = "TA7")
 	private BigDecimal ta7;
 	/**
 	 * 助教人数
 	 */
+	@Column(name = "TA8")
 	private BigDecimal ta8;
 	/**
 	 * 所属教学单位
 	 */
+//	@Column(name = "TEACH_UNIT")
+	@Transient
 	private TeachUnit teachUnit;
 	public int getId() {
 		return id;
@@ -152,12 +187,6 @@ public class YearTeachUnit {
 	public void setJxyjper(BigDecimal jxyjper) {
 		this.jxyjper = jxyjper;
 	}
-	public BigDecimal getSjpyper() {
-		return sjpyper;
-	}
-	public void setSjpyper(BigDecimal sjpyper) {
-		this.sjpyper = sjpyper;
-	}
 	public BigDecimal getTa1() {
 		return ta1;
 	}
@@ -211,6 +240,12 @@ public class YearTeachUnit {
 	}
 	public void setTeachUnit(TeachUnit teachUnit) {
 		this.teachUnit = teachUnit;
+	}
+	public BigDecimal getSzpyper() {
+		return szpyper;
+	}
+	public void setSzpyper(BigDecimal szpyper) {
+		this.szpyper = szpyper;
 	}
 	
 	

@@ -6,8 +6,13 @@ import org.eclipse.ui.application.IWorkbenchConfigurer;
 import org.eclipse.ui.application.IWorkbenchWindowConfigurer;
 import org.eclipse.ui.application.WorkbenchAdvisor;
 import org.eclipse.ui.application.WorkbenchWindowAdvisor;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.hibernate.boot.MetadataSources;
+import org.hibernate.boot.registry.StandardServiceRegistry;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
-import com.zyj.jfcs.app.sys.HookSysTray;
+import com.zyj.jfcs.app.model.Calcresult;
 
 public class ApplicationWorkbenchAdvisor extends WorkbenchAdvisor {
 
@@ -34,4 +39,35 @@ public class ApplicationWorkbenchAdvisor extends WorkbenchAdvisor {
 		return PERSPECTIVE_ID;
 	}
 
+	@Override
+	public void postStartup() {
+		super.postStartup();
+		initJPASessionFactory();
+		
+	}
+
+	/**
+	 * 初始化JPA Session工厂
+	 */
+	private void initJPASessionFactory() {
+		System.out.println("初始化Hibernate Session Factory！");
+		
+		StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure().build();
+		try {
+			AppCache.sessionFactory = new MetadataSources(registry).buildMetadata(registry).buildSessionFactory();
+			Session session = AppCache.sessionFactory.openSession();
+			Transaction transaction = session.beginTransaction();
+			AppCache.sessionFactory.openSession().beginTransaction();
+			transaction.commit();
+			Calcresult c = session.createQuery("from Calcresult where id = 1", Calcresult.class).uniqueResult();
+			System.out.println(c);
+			System.out.println("Hibernate Session Factory 初始化成功！");
+			session.close();
+		} catch (Exception e) {
+			StandardServiceRegistryBuilder.destroy(registry);
+			e.printStackTrace();
+		}
+	}
+
+    
 }

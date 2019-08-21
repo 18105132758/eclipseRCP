@@ -7,6 +7,8 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
+import com.zyj.jfcs.app.model.Calcresult;
+
 public class Demo01 {
 	private static SessionFactory sessionFactory;
 	public static void main(String[] args) {
@@ -19,8 +21,8 @@ public class Demo01 {
 			e.printStackTrace();
 		}
 		
-//		addItem();
-		selectItems();
+		addItem();
+//		selectItems();
 	}
 	
 	private static void selectItems() {
@@ -36,6 +38,9 @@ public class Demo01 {
 		item.setId(1L);
 		item.setName("语文");
 		session.save(item);
+		
+		session.save(new Calcresult());
+		
 		transaction.commit();
 	}
 }

@@ -7,87 +7,119 @@ package com.zyj.jfcs.app.model;
 
 import java.math.BigDecimal;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.GenericGenerator;
+@Entity
+@Table(name = "PUB_DATA")
 public class PubData {
-	
+	@Id
+	@GeneratedValue(generator="increment")
+	@GenericGenerator(name="increment" , strategy = "increment")
 	private int id;
 	
+	@Column(name = "YEAR")
 	private int year;
 	/**
 	 * 年度拟拨付总额
 	 */
+	@Column(name = "MT")
 	private BigDecimal mt;
 	/**
 	 * 全校本年应收金额
 	 */
+	@Column(name = "RTE")
 	private BigDecimal rte;
 	/**
 	 * 全校本年实收金额
 	 */
+	@Column(name = "MTE")
 	private BigDecimal mte;
 	/**
 	 * 全校缴费率标准
 	 */
+	@Column(name = "SJF")
 	private BigDecimal sjf;
 	/**
 	 * 学生经费分割比
 	 */
+	@Column(name = "U_PER")
 	private BigDecimal uper;
 	/**
 	 * 专业培养费分割比
 	 */
+	@Column(name = "PPER")
 	private BigDecimal pper;
 	/**
 	 * 公共课经费分割比
 	 */
+	@Column(name = "C_PER")
 	private BigDecimal cper;
 	/**
 	 * 奖酬金比率
 	 */
+	@Column(name = "JCJ_PER")
 	private BigDecimal jcjper;
 	/**
 	 * 学生困难补助比率
 	 */
+	@Column(name = "XSKNBZ_PER")
 	private BigDecimal xsknbzper;
 	/**
 	 * 学生活动经费比率
 	 */
+	@Column(name = "XSHDJF_PER")
 	private BigDecimal xshdjfper;
 	/**
 	 * 学生奖学金比率
 	 */
+	@Column(name = "XSJXJ_PER")
 	private BigDecimal xsjxjper;
 	/**
 	 * 教授A系数
 	 */
+	@Column(name = "TB1_PER")
 	private BigDecimal tb1;
 	/**
 	 * 教授B系数
 	 */
+	@Column(name = "TB2_PER")
 	private BigDecimal tb2;
 	/**
 	 * 教授C系数
 	 */
+	@Column(name = "TB3_PER")
 	private BigDecimal tb3;
 	/**
 	 * 教授D系数
 	 */
+	@Column(name = "TB4_PER")
 	private BigDecimal tb4;
 	/**
 	 * 副教授A系数
 	 */
+	@Column(name = "TB5_PER")
 	private BigDecimal tb5;
 	/**
 	 * 副教授B系数
 	 */
+	@Column(name = "TB6_PER")
 	private BigDecimal tb6;
 	/**
 	 * 讲师
 	 */
+	@Column(name = "TB7_PER")
 	private BigDecimal tb7;
 	/**
 	 * 助理
 	 */
+	@Column(name = "TB8_PER")
 	private BigDecimal tb8;
+	
 	public int getId() {
 		return id;
 	}
