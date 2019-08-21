@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+		<!-- 数据库连接信息 -->
+        <property name="hibernate.connection.driver_class">org.h2.Driver</property>
+        <property name="hibernate.connection.username">sa</property>
+        <property name="hibernate.connection.password"></property>
+        <!-- 数据文件：放到用户目录下： jfcs/db/jfcsDb -->
+        <property name="hibernate.connection.url">jdbc:h2:file:~/jfcs/db/jfcsDb</property>
+
+		<!-- 数据库方言 -->
+		<property name="hibernate.dialect">org.hibernate.dialect.H2Dialect</property>
+		
+		<!-- 特性配置 -->
+        <property name="hibernate.cache.use_query_cache">true</property>
+        <property name="hibernate.cache.region_prefix">hibernate.test</property>
+        <property name="hibernate.jdbc.use_streams_for_binary">true</property>
+        	<!-- JDBC批更新数据块的大小，对性能影响较大 -->
+        <property name="hibernate.jdbc.batch_size">0</property>
+        <property name="hibernate.max_fetch_depth">3</property>
+        	<!-- 
+        		create：每次加载hibernate时都会删除上一次的生成的表，然后根据你的model类再重新来生成新表，
+        			哪怕两次没有任何改变也要这样执行，这就是导致数据库表数据丢失的一个重要原因。
+       			create-drop：每次加载hibernate时根据model类生成表，但是sessionFactory一关闭,表就自动删除。
+       			update：最常用的属性，第一次加载hibernate时根据model类会自动建立起表的结构（前提是先建立好数据库），以后加载hibernate时根据 model类自动更新表结构，
+       					即使表结构改变了但表中的行仍然存在不会删除以前的行。要注意的是当部署到服务器后，表结构是不会被马上建立起来的，是要等 应用第一次运行起来后才会。
+       			validate：每次加载hibernate时，验证创建数据库表结构，只会和数据库中的表进行比较，不会创建新表，但是会插入新值。
+        	-->
+        <property name="hibernate.hbm2ddl.auto">update</property>
+        <property name="hibernate.generate_statistics">true</property>
+        <property name="test-assertable-setting">value</property>
+        <property name="hibernate.cache.region.factory_class">org.hibernate.cache.internal.NoCachingRegionFactory</property>
+        
+		<!-- 指定实体类， 因为在实体类中使用注解进行ORM配置，所以这里直接配置全限定类名即可 -->        
+        <!-- 测试实体类 -->
+        <mapping class = "com.zyj.test.HibernateDemo.Item"/>
+        <!-- 教学经费 -->
+        <mapping class = "com.zyj.jfcs.app.model.Calcresult"/>
+        
+        <event type="pre-insert"/>
+	</session-factory>
+</hibernate-configuration>
+
+       
