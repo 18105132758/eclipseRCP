@@ -1,6 +1,5 @@
 package com.zyj.jfcs.app.ui.login;
 
-import org.apache.commons.lang3.StringUtils;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.swt.SWT;
@@ -10,7 +9,6 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
-import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
@@ -97,26 +95,30 @@ public class LoginDialog extends Dialog {
 		//获取用户名、密码
 		String userName = this.userName.getText();
 		String password = this.password.getText();
-		//创建信息提示板，用于提示错误信息
-		MessageBox mb;
-		if(StringUtils.isBlank(userName)) {
-			//用户名为空
-			mb = new MessageBox(getShell(), SWT.ICON_ERROR | SWT.OK);
-			mb.setText("提示");
-			mb.setMessage("用户名不能为空!");
-			mb.open();
-			this.userName.setFocus();
-			return;
-		}
-		if(StringUtils.isBlank(password)) {
-			//密码为空
-			mb = new MessageBox(getShell(), SWT.ICON_ERROR | SWT.OK);
-			mb.setText("提示");
-			mb.setMessage("密码不能为空!");
-			mb.open();
-			this.password.setFocus();
-			return;
-		}
+		UserTemp.userName = userName;
+		UserTemp.password = password;
+//		
+//		//创建信息提示板，用于提示错误信息
+//		MessageBox mb;
+//		if(StringUtils.isBlank(userName)) {
+//			//用户名为空
+//			mb = new MessageBox(getShell(), SWT.ICON_ERROR | SWT.OK);
+//			mb.setText("提示");
+//			mb.setMessage("用户名不能为空!");
+//			mb.open();
+//			this.userName.setFocus();
+//			return;
+//		}
+//		if(StringUtils.isBlank(password)) {
+//			//密码为空
+//			mb = new MessageBox(getShell(), SWT.ICON_ERROR | SWT.OK);
+//			mb.setText("提示");
+//			mb.setMessage("密码不能为空!");
+//			mb.open();
+//			this.password.setFocus();
+//			return;
+//		}
 		super.okPressed();
 	}
+
 }

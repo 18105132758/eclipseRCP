@@ -51,17 +51,23 @@ public class ApplicationWorkbenchAdvisor extends WorkbenchAdvisor {
 	 */
 	private void initJPASessionFactory() {
 		System.out.println("初始化Hibernate Session Factory！");
-		
+		//注册"服务"
 		StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure().build();
 		try {
+			//通过注册的"服务"，创建Session工厂
 			AppCache.sessionFactory = new MetadataSources(registry).buildMetadata(registry).buildSessionFactory();
+			//打开一个"会话-session"
 			Session session = AppCache.sessionFactory.openSession();
+			//通过session开启事务
 			Transaction transaction = session.beginTransaction();
-			AppCache.sessionFactory.openSession().beginTransaction();
+			//新增用户
+//			session.save(new User());
+			//提交事务
 			transaction.commit();
+			//查询单个结果
 			Calcresult c = session.createQuery("from Calcresult where id = 1", Calcresult.class).uniqueResult();
-			System.out.println(c);
 			System.out.println("Hibernate Session Factory 初始化成功！");
+			//关闭会话
 			session.close();
 		} catch (Exception e) {
 			StandardServiceRegistryBuilder.destroy(registry);
