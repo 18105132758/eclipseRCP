@@ -6,8 +6,10 @@ import org.hibernate.Transaction;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.query.Query;
 
 import com.zyj.jfcs.app.model.Calcresult;
+import com.zyj.jfcs.app.model.User;
 
 public class Demo01 {
 	private static SessionFactory sessionFactory;
@@ -21,8 +23,33 @@ public class Demo01 {
 			e.printStackTrace();
 		}
 		
-		addItem();
+//		addItem();
 //		selectItems();
+		
+		addUser();
+		selectUser();
+	}
+	
+	private static void selectUser() {
+		Session session = sessionFactory.openSession();
+		Query<User> query = session.createQuery("from User where userName = :userName");
+		query.setParameter("userName", "zyj");
+		User user = query.uniqueResult();
+		System.out.println(user.getUserName());
+		System.out.println(user.getPassword());
+		session.close();
+	}
+	private static void addUser() {
+		User user =new User();
+		user.setUserName("zyj");
+		user.setPassword("zyj");
+		Session session = sessionFactory.openSession();
+		Transaction t = session.beginTransaction();
+		
+		session.save(user);
+		t.commit();
+//		session.flush();
+		session.close();
 	}
 	
 	private static void selectItems() {
