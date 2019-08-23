@@ -202,7 +202,7 @@ public class SystemTrayMaster implements SelectionListener, Listener{
 				display.asyncExec(new Runnable() {
 					@Override
 					public void run() {
-						System.out.println("起爆文字。。。。。。。。。。");
+						System.out.println("气泡文字。。。。。。。。。。");
 						ToolTip tip = new ToolTip(window.getShell(), 
 								SWT.BALLOON | SWT.ICON_INFORMATION);
 //						tip.setAutoHide(true);	//自动隐藏气泡提示文字

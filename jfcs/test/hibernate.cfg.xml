@@ -39,6 +39,8 @@
         <mapping class = "com.zyj.test.HibernateDemo.Item"/>
         <!-- 教学经费 -->
         <mapping class = "com.zyj.jfcs.app.model.Calcresult"/>
+        <!-- 用户信息 -->
+        <mapping class = "com.zyj.jfcs.app.model.User"/>
         
         <event type="pre-insert"/>
 	</session-factory>

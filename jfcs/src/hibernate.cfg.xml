@@ -8,7 +8,7 @@
         <property name="hibernate.connection.driver_class">org.h2.Driver</property>
         <property name="hibernate.connection.username">sa</property>
         <property name="hibernate.connection.password"></property>
-        <!-- 数据文件：放到用户目录下： jfcs/db/jfcsDb -->
+        <!-- 数据文件：放到用户家目录下： jfcs/db/jfcsDb.mv.db -->
         <property name="hibernate.connection.url">jdbc:h2:file:~/jfcs/db/jfcsDb</property>
 
 		<!-- 数据库方言 -->
