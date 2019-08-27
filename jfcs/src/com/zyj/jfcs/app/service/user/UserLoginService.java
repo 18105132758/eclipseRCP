@@ -72,7 +72,7 @@ public class UserLoginService {
 			//新增
 			user = new User();
 			user.setUserName(userName);
-			user.setUserName(password);
+			user.setPassword(password);
 			addUser(user);
 			return true;
 		}

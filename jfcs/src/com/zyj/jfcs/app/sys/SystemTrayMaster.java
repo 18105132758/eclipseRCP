@@ -192,12 +192,6 @@ public class SystemTrayMaster implements SelectionListener, Listener{
 		timer.schedule(new TimerTask() {
 			@Override
 			public void run() {
-//				System.out.println(Display.getCurrent());
-//				System.out.println(Display.getDefault());
-//				Display display = PlatformUI.getWorkbench().getDisplay();
-//				System.out.println("1" + display);
-//				System.out.println("2" + display.getActiveShell());
-				
 				Display display = window.getShell().getDisplay();
 				display.asyncExec(new Runnable() {
 					@Override
