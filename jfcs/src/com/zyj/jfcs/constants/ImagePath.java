@@ -61,4 +61,11 @@ public class ImagePath {
 	 */
 	public static final String LOGIN_TITLE_ICO = ICON_PATH + "login/loginTitle.ico";
 	
+	/**
+	 * 状态栏小图标
+	 */
+	public static final String STATUS_LINE__TITLE_ICO = ICON_PATH + "statusLine/money.ico";
+	
+	
+	
 }

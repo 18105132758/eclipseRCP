@@ -39,10 +39,10 @@ public class UserLoginService {
 			public void run(IProgressMonitor monitor) throws InvocationTargetException, InterruptedException {
 				monitor.beginTask("等在登陆， 请稍后...", IProgressMonitor.UNKNOWN);
 				monitor.subTask("验证用户名、密码...");
-				TimeUnit.SECONDS.sleep(5);
+				TimeUnit.SECONDS.sleep(2);
 				isSuccess =  validateOrAddNewUserInfo(userName, password);
 				monitor.subTask("验证结束，销毁资源....");
-				TimeUnit.SECONDS.sleep(5);
+				TimeUnit.SECONDS.sleep(2);
 				HibernateSessionFactory.closeSession();
 			}
 		};

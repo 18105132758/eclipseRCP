@@ -3,6 +3,7 @@ package com.zyj.jfcs.app;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.ICoolBarManager;
 import org.eclipse.jface.action.IMenuManager;
+import org.eclipse.jface.action.IStatusLineManager;
 import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
@@ -26,6 +27,7 @@ import com.zyj.jfcs.app.actions.RemoteDataSourceConfig;
 import com.zyj.jfcs.app.actions.TeachUnitData;
 import com.zyj.jfcs.app.actions.Update;
 import com.zyj.jfcs.app.actions.UserManage;
+import com.zyj.jfcs.app.statusLine.StatusBarContribution;
 import com.zyj.jfcs.constants.AppConst;
 
 public class ApplicationActionBarAdvisor extends ActionBarAdvisor {
@@ -56,6 +58,10 @@ public class ApplicationActionBarAdvisor extends ActionBarAdvisor {
      * 工具栏: 用户注销、在线升级
      */
     private Action logOff, update;
+    
+    
+    private StatusBarContribution statusBarContribution;
+    
     
 	public ApplicationActionBarAdvisor(IActionBarConfigurer configurer) {
 		super(configurer);
@@ -113,6 +119,15 @@ public class ApplicationActionBarAdvisor extends ActionBarAdvisor {
 		
 		update = new Update();
 		register(update);
+		
+		statusBarContribution = new StatusBarContribution("用户登录！");
+		statusBarContribution.setVisible(true);
+	}
+
+	
+	@Override
+	protected void fillStatusLine(IStatusLineManager statusLine) {
+		statusLine.add(statusBarContribution);;
 	}
 
 	protected void fillMenuBar(IMenuManager menuBar) {

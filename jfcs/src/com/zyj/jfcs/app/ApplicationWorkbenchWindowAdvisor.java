@@ -1,5 +1,6 @@
 package com.zyj.jfcs.app;
 
+import org.eclipse.jface.action.IStatusLineManager;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.graphics.Rectangle;
@@ -10,17 +11,13 @@ import org.eclipse.ui.application.IActionBarConfigurer;
 import org.eclipse.ui.application.IWorkbenchWindowConfigurer;
 import org.eclipse.ui.application.WorkbenchWindowAdvisor;
 
-import com.zyj.jfcs.app.sys.HookSysTray;
+import com.zyj.jfcs.app.sys.CacheImage;
 import com.zyj.jfcs.app.sys.SystemTrayMaster;
 import com.zyj.jfcs.constants.AppConst;
+import com.zyj.jfcs.constants.ImagePath;
 
 public class ApplicationWorkbenchWindowAdvisor extends WorkbenchWindowAdvisor {
 
-	/**
-	 * 系统托盘
-	 */
-	private HookSysTray hookSysTray;
-	
     public ApplicationWorkbenchWindowAdvisor(IWorkbenchWindowConfigurer configurer) {
         super(configurer);
         AppCache.DISPLAY = getWindowConfigurer().getWindow().getShell().getDisplay();
@@ -62,6 +59,12 @@ public class ApplicationWorkbenchWindowAdvisor extends WorkbenchWindowAdvisor {
 		
 		//创建系统托盘
 		createSystemTray();
+		
+		
+		//设置状态栏临时信息：
+		IStatusLineManager lineManager = getWindowConfigurer().getActionBarConfigurer().getStatusLineManager();
+		lineManager.setMessage(CacheImage.getAppImage(ImagePath.STATUS_LINE__TITLE_ICO), "Powered by zyj");
+		System.out.println("设置状态栏临时信息.....OK ");
 	}
     
 
