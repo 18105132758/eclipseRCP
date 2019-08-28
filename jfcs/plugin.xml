@@ -69,7 +69,7 @@
             introId="jfcs.intro"
             content="introContent.xml">
          <presentation
-               home-page-id="root">
+               home-page-id="root"> <!-- 欢迎页主页 ID -->
             <implementation
                   os="win32,linux,macosx"
                   kind="html">

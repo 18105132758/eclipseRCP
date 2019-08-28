@@ -66,7 +66,8 @@ public class ApplicationActionBarAdvisor extends ActionBarAdvisor {
 	public ApplicationActionBarAdvisor(IActionBarConfigurer configurer) {
 		super(configurer);
 	}
-
+	
+	@Override
 	protected void makeActions(IWorkbenchWindow window) {
 		welcomeAction = ActionFactory.INTRO.create(window);
 		welcomeAction.setText("欢迎使用");
@@ -120,6 +121,7 @@ public class ApplicationActionBarAdvisor extends ActionBarAdvisor {
 		update = new Update();
 		register(update);
 		
+		//状态栏自定义内容
 		statusBarContribution = new StatusBarContribution("用户登录！");
 		statusBarContribution.setVisible(true);
 	}
