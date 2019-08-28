@@ -38,7 +38,7 @@ public class Perspective implements IPerspectiveFactory {
 				 */
 				editorArea);	//相关元素
 		layout.getViewLayout(AppConst.VIEW_TEACH_UNIT_NAME_ID).setCloseable(false);	//禁用关闭功能
-		layout.getViewLayout(AppConst.VIEW_TEACH_UNIT_NAME_ID).setMoveable(false);	//警用移动功能
+		layout.getViewLayout(AppConst.VIEW_TEACH_UNIT_NAME_ID).setMoveable(false);	//禁用移动功能
 		
 		/*
 		 *	加入经费概览视图，不能与其他视图重叠 

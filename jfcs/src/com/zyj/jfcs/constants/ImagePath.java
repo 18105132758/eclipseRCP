@@ -65,6 +65,20 @@ public class ImagePath {
 	 * 状态栏小图标
 	 */
 	public static final String STATUS_LINE__TITLE_ICO = ICON_PATH + "statusLine/money.ico";
+
+	
+	/**
+	 * 教学单位
+	 */
+	public static final String TEACH_UNIT_NAME_ICO = ICON_PATH + "teachUnitName/name.ico";
+	/**
+	 * 教学单位-专业课
+	 */
+	public static final String TEACH_UNIT_ZYK_ICO = ICON_PATH + "teachUnitName/zyk.ico";
+	/**
+	 * 教学单位-公开课
+	 */
+	public static final String TEACH_UNIT_GGK_ICO = ICON_PATH + "teachUnitName/ggk.ico";
 	
 	
 	

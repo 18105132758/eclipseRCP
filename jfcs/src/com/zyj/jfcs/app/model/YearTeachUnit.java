@@ -29,6 +29,9 @@ public class YearTeachUnit {
 	
 	@Column(name = "UNIT_ID", length = 50)
 	private String unitId;
+	
+	@Column(name = "UNIT_NAME", length = 200)
+	private String unitName;
 	/**
 	 * 是否有专业课
 	 */
@@ -247,6 +250,10 @@ public class YearTeachUnit {
 	public void setSzpyper(BigDecimal szpyper) {
 		this.szpyper = szpyper;
 	}
-	
-	
+	public String getUnitName() {
+		return unitName;
+	}
+	public void setUnitName(String unitName) {
+		this.unitName = unitName;
+	}
 }
