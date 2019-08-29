@@ -66,5 +66,4 @@ public class TeachUnitNameLabelProvider implements ITableLabelProvider{
 			return null;
 	}
 	
-	
 }

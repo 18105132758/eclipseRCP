@@ -61,11 +61,13 @@ public class TeachUnitName extends ViewPart implements IPropertyChangeListener{
 	 * @param parent
 	 */
 	private void createTableViewer(Composite parent) {
+		//创建TableViewer
 		tableViewer = new TableViewer(parent, SWT.SINGLE | SWT.H_SCROLL);
-		tableViewer.setUseHashlookup(true);
+		tableViewer.setUseHashlookup(true);	//true：提高SWT元素与数据的映射效率
+		
+		//获取SWT  Table，并设置布局、背景
 		final Table table = tableViewer.getTable();
 		table.setBackgroundImage(CacheImage.getAppImage(null));
-		
 		table.setLayoutData(new GridData(GridData.FILL_BOTH));
 		
 		//添加教学单位、专业课、公共课 三列
@@ -76,21 +78,20 @@ public class TeachUnitName extends ViewPart implements IPropertyChangeListener{
 		TableColumn hasGgkColumn = new TableColumn(table, SWT.CENTER);
 		hasGgkColumn.setWidth(30);
 		
-		//设置内容提供器
+		//注册内容提供器
 		tableViewer.setContentProvider(new TeachUnitNameContentProvider());
-		//设置标签提供器
+		//注册标签提供器
 		tableViewer.setLabelProvider(new TeachUnitNameLabelProvider());
 		
-		
-		//设定表格数据
+		//填充表格数据源
 		tableViewer.setInput(YearTeachUnitService.INSTANCE.getYearTeachUnitInYear(YearManager.INSTANCE.getCurrYear()));
 
-		//滚动到顶端
+		//选中第一条
 		table.setSelection(0);
 		table.setFocus();
-		//设置监听服务提供者(即事件源)
-		getViewSite().setSelectionProvider(tableViewer);
 		
+		//注册为选中操作事件源
+		getViewSite().setSelectionProvider(tableViewer);
 	}
 	
 	
