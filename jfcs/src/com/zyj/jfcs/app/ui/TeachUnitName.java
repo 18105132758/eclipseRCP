@@ -120,4 +120,8 @@ public class TeachUnitName extends ViewPart implements IPropertyChangeListener{
 		}
 	}
 
+	public TableViewer getTableViewer() {
+		return tableViewer;
+	}
+
 }
