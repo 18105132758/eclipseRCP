@@ -34,11 +34,18 @@ public class Demo {
 	
 	public void createContent(Shell shell) {
 		shell.setLayout(new FillLayout(SWT.VERTICAL));
-		//创建画板
+		//创建"画布"
 		Canvas canvas = new Canvas(shell, SWT.NONE);
 		canvas.addPaintListener(new PaintListener() {
 			@Override
 			public void paintControl(PaintEvent e) {
+				/*
+				 * 获取canvas
+				 * 尽量不要在paintControl方法中使用canvas设置背景，可能会引起视图循环刷新
+				 */
+				Canvas ca = (Canvas) e.widget;
+				ca.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
+				
 				Display display = Display.getCurrent();
 				//设置背景色
 				e.gc.setBackground(display.getSystemColor(SWT.COLOR_WHITE));
@@ -63,5 +70,20 @@ public class Demo {
 //				e.gc.fillArc(50, 100, 200, 220, 60, 210);
 			}
 		});
+		
+		canvas.addPaintListener(new Aa());
+		canvas.addPaintListener(new Aa());
+	}
+	
+	
+	public class Aa implements PaintListener{
+
+		@Override
+		public void paintControl(PaintEvent e) {
+			System.out.println("画图....................");
+			Canvas ca = (Canvas) e.widget;
+			ca.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
+		}
+		
 	}
 }

@@ -1,5 +1,8 @@
 package com.zyj.jfcs.app.ui;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.eclipse.jface.util.IPropertyChangeListener;
 import org.eclipse.jface.util.PropertyChangeEvent;
 import org.eclipse.jface.viewers.ISelection;
@@ -28,7 +31,9 @@ import com.zyj.jfcs.constants.PropertyName;
  * @author 周昱君
  *
  */
-public class PieDiagram extends ViewPart implements ISelectionListener, IPropertyChangeListener{
+public class PieDiagram extends ViewPart implements 
+	ISelectionListener, 
+	IPropertyChangeListener{
 
 	/**
 	 * 饼图文字严肃
@@ -108,50 +113,76 @@ public class PieDiagram extends ViewPart implements ISelectionListener, IPropert
 		PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().addSelectionListener(this);
 	}
 
-	
+	int i = 0;
+	List<PaintListener> paintListeners = new ArrayList<PaintListener>();
 	private void drawDiagram(Composite parent, int year, String unitId) {
-		canvas.addPaintListener(new PaintListener() {
-			@Override
-			public void paintControl(PaintEvent e) {
-				e.gc.setBackground(canvasbgColor);
-				e.gc.fillRectangle(0, 0, ((Canvas)e.widget).getBounds().width, 
-						((Canvas)e.widget).getBounds().width);	//清空之前的内容？？否则重画时会导致页面残留
+		if(!paintListeners.isEmpty()) {
+			for (PaintListener paintListener : paintListeners) {
+				canvas.removePaintListener(paintListener);
 			}
-		});
-		canvas.redraw();
+			paintListeners.clear();
+		}
+		
+		System.out.println("画图 " + (i++) + "次");
+//		PaintListener listener = new PaintListener() {
+//			@Override
+//			public void paintControl(PaintEvent e) {
+//				System.out.println("画图1 " + (i++) + "次");
+////				e.gc.setBackground(canvasbgColor);
+////				e.gc.fillRectangle(0, 0, ((Canvas)e.widget).getBounds().width, 
+////						((Canvas)e.widget).getBounds().width);	//清空之前的内容？？否则重画时会导致页面残留
+//			}
+//		};
+//		canvas.addPaintListener(listener);
+//		paintListeners.add(listener);
+//		canvas.redraw();
+		
 		YearUnitJF jf = YearTeachUnitService.INSTANCE.getYearUnitJF(unitId, year);
-		canvas.addPaintListener(new PaintListener() {
-			@Override
-			public void paintControl(PaintEvent e) {
-				double ui = jf.getUi();
-				double pi = jf.getPi();
-				double ci = jf.getCi();
-				double ryjf = jf.getRyjf();
-				double zhywf = jf.getZhywf();
-				double total = jf.getTotal();
-				if(total == 0) {
-					canvas.addPaintListener(new DrawArc(0, 0, 0, 360, -1, textColor, 0, 0, 0, 0, 0));
-					return;
-				}
-				int uiPer = (int) (jf.getPer(ui) * 360);
-				int piPer = (int) (jf.getPer(pi) * 360);
-				int ciPer = (int) (jf.getPer(ci) * 360);
-				int ryjfPer = (int) (jf.getPer(ryjf) * 360);
-				int zhywfPer = (int) (jf.getPer(zhywf) * 360);
-				//绘制各类经费
-				canvas.addPaintListener(
-						new DrawArc(0, 0, 0, uiPer, 1, uibgColor, ui, pi, ci, ryjf, zhywf));
-				canvas.addPaintListener(
-						new DrawArc(0, 0, uiPer, piPer, 2, pibgColor, ui, pi, ci, ryjf, zhywf));
-				canvas.addPaintListener(
-						new DrawArc(0, 0, uiPer + piPer, ciPer, 3, cibgColor, ui, pi, ci, ryjf, zhywf));
-				canvas.addPaintListener(
-						new DrawArc(0, 0, uiPer + piPer + ciPer, ryjfPer, 4, jcjbgColor, ui, pi, ci, ryjf, zhywf));
-				canvas.addPaintListener(
-						new DrawArc(0, 0, uiPer + piPer + ciPer + ryjfPer, zhywfPer, 5, zhywbgColor, ui, pi, ci, ryjf, zhywf));
-				
-			}
-		});
+
+		double ui = jf.getUi();
+		double pi = jf.getPi();
+		double ci = jf.getCi();
+		double ryjf = jf.getRyjf();
+		double zhywf = jf.getZhywf();
+		double total = jf.getTotal();
+		if(total == 0) {
+			canvas.addPaintListener(new DrawArc(0, 0, 0, 360, -1, textColor, 0, 0, 0, 0, 0));
+			return;
+		}
+		int uiPer = (int) (jf.getPer(ui) * 360);
+		int piPer = (int) (jf.getPer(pi) * 360);
+		int ciPer = (int) (jf.getPer(ci) * 360);
+		int ryjfPer = (int) (jf.getPer(ryjf) * 360);
+		int zhywfPer = (int) (jf.getPer(zhywf) * 360);
+		//绘制各类经费
+		PaintListener listener = new DrawArc(0, 0, 0, uiPer, 1, uibgColor, ui, pi, ci, ryjf, zhywf);
+		canvas.addPaintListener(listener);
+		paintListeners.add(listener);
+		
+		listener = new DrawArc(0, 0, uiPer, piPer, 2, pibgColor, ui, pi, ci, ryjf, zhywf);
+		canvas.addPaintListener(listener);
+		paintListeners.add(listener);
+//		
+		listener = new DrawArc(0, 0, uiPer + piPer, ciPer, 3, cibgColor, ui, pi, ci, ryjf, zhywf);
+		canvas.addPaintListener(listener);
+		paintListeners.add(listener);
+//		
+		listener = new DrawArc(0, 0, uiPer + piPer + ciPer, ryjfPer, 4, jcjbgColor, ui, pi, ci, ryjf, zhywf);
+		canvas.addPaintListener(listener);
+		paintListeners.add(listener);
+//		
+//		listener = new DrawArc(0, 0, uiPer + piPer + ciPer + ryjfPer, zhywfPer, 5, zhywbgColor, ui, pi, ci, ryjf, zhywf);
+//		canvas.addPaintListener(listener);
+//		paintListeners.add(listener);
+		
+//		listener = new PaintListener() {
+//			@Override
+//			public void paintControl(PaintEvent e) {
+//				System.out.println("画图2 " + (i++) + "次");
+//			}
+//		};
+//		canvas.addPaintListener(listener);
+//		paintListeners.add(listener);
 		
 	}
 	
@@ -195,6 +226,7 @@ public class PieDiagram extends ViewPart implements ISelectionListener, IPropert
 	}
 	
 	private void refereshView() {
+		System.out.println("刷新视图.......");
 		YearTeachUnit ytu = getSelectedUnit();
 		
 		//设置标题栏问你
@@ -259,10 +291,13 @@ public class PieDiagram extends ViewPart implements ISelectionListener, IPropert
 
 		@Override
 		public void paintControl(PaintEvent e) {
+			System.out.println("画图 " + (i++) + "次");
 			Canvas canvas = (Canvas) e.widget;
 			int x = canvas.getBounds().width;
 			int y = canvas.getBounds().height;
-			canvas.setBackground(color);
+			
+//			canvas.setBackground(color);	//导致反复刷新界面？？？？？
+			e.gc.setBackground(color);	
 			
 			//画图
 			e.gc.fillArc(this.x + 15, this.y + 1, x - 30, y - 60, beginAngle, angle);
@@ -305,8 +340,6 @@ public class PieDiagram extends ViewPart implements ISelectionListener, IPropert
 				e.gc.setForeground(textColor);
 				e.gc.drawString("综合业务" + zhywf,  12, y - 14, true);
 				break;
-				
-				
 			}
 		}
 
