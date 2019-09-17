@@ -79,6 +79,11 @@ public class ImagePath {
 	 * 教学单位-公开课
 	 */
 	public static final String TEACH_UNIT_GGK_ICO = ICON_PATH + "teachUnitName/ggk.ico";
+
+	/**
+	 * 	公共-保存
+	 */
+	public static final String PUBLIC_SAVE_ICO = ICON_PATH + "public/save.ico";
 	
 	
 	

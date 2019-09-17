@@ -298,7 +298,6 @@ public class PieDiagram extends ViewPart implements
 			
 //			canvas.setBackground(color);	//导致反复刷新界面？？？？？
 			e.gc.setBackground(color);	
-			
 			//画图
 			e.gc.fillArc(this.x + 15, this.y + 1, x - 30, y - 60, beginAngle, angle);
 			e.gc.setFont(font);

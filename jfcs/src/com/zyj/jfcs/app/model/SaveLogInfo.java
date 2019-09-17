@@ -20,7 +20,7 @@ public class SaveLogInfo {
 	 */
 	private SaveLogInfo() {
 		super();
-		// TODO Auto-generated constructor stub
+		usertag = "1"; //假定默认为财务处人员
 	}
 
 	public String getUsername() {

@@ -10,6 +10,7 @@ import java.util.Iterator;
 import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
+import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 
@@ -59,6 +60,15 @@ public class CacheImage {
 	 */
 	public static Image getAppImage(String imagePath) {
 		return getImage(AppConst.APPLICATION_ID, imagePath);
+	}
+	
+	/**
+	 * 获取应用图片
+	 * @param imagePath
+	 * @return
+	 */
+	public static ImageDescriptor getImageDescriptor(String imagePath) {
+		return AbstractUIPlugin.imageDescriptorFromPlugin(AppConst.APPLICATION_ID, imagePath);
 	}
 	
 	/**

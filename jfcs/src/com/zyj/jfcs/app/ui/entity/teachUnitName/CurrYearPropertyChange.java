@@ -1,8 +1,5 @@
 package com.zyj.jfcs.app.ui.entity.teachUnitName;
-/**
- * 当前年份改变监听控制器
- * @author zhouyj
- */
+
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -12,7 +9,10 @@ import org.eclipse.jface.util.IPropertyChangeListener;
 import org.eclipse.jface.util.PropertyChangeEvent;
 
 import com.zyj.jfcs.constants.PropertyName;
-
+/**
+ * 当前年份改变监听控制器
+ * @author zhouyj
+ */
 public class CurrYearPropertyChange {
 	
 	public static final CurrYearPropertyChange INSTANCE = new CurrYearPropertyChange();
