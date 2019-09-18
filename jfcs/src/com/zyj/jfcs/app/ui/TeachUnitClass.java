@@ -1,7 +1,16 @@
 package com.zyj.jfcs.app.ui;
 
+import java.util.Iterator;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
+import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IToolBarManager;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.TextCellEditor;
@@ -16,7 +25,10 @@ import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.ViewPart;
 
+import com.zyj.jfcs.app.model.Course;
 import com.zyj.jfcs.app.sys.CacheImage;
+import com.zyj.jfcs.app.ui.entity.teachUnitClass.CourseTreeChildren;
+import com.zyj.jfcs.app.ui.entity.teachUnitClass.CourseTreeParent;
 import com.zyj.jfcs.app.ui.entity.teachUnitClass.SetTableColColorListener;
 import com.zyj.jfcs.app.ui.entity.teachUnitClass.TeachUnitClassCellModifier;
 import com.zyj.jfcs.app.ui.entity.teachUnitClass.TeachUnitClassContentProvider;
@@ -107,8 +119,9 @@ public class TeachUnitClass extends ViewPart implements ISelectionListener{
 		
 		//创建表头列
 		Tree tree = treeViewer.getTree();
+		
 		tree.setLayoutData(new GridData(GridData.FILL_BOTH));
-		TreeColumn c1 = new TreeColumn(tree, SWT.LEFT);	//内容居左显示： CENTER-居中，RIGHT-居右
+		TreeColumn c1 = new TreeColumn(tree, SWT.CENTER);	//内容居左显示： CENTER-居中，RIGHT-居右
 		c1.setText("课程名称");
 		c1.setWidth(175);
 		TreeColumn c2 = new TreeColumn(tree, SWT.CENTER);	
@@ -168,7 +181,10 @@ public class TeachUnitClass extends ViewPart implements ISelectionListener{
 			
 		};
 		
-		calcAction = new Action("经费测算,", CacheImage.getImageDescriptor("")) {
+		calcAction = new Action("经费测算,",
+				null
+//				CacheImage.getImageDescriptor("")
+				) {
 
 			@Override
 			public void run() {
@@ -176,7 +192,10 @@ public class TeachUnitClass extends ViewPart implements ISelectionListener{
 			}
 		};
 
-		closeTreeAction = new Action("收缩数据", CacheImage.getImageDescriptor("")) {
+		closeTreeAction = new Action("收缩数据", 
+				null
+//				CacheImage.getImageDescriptor("")
+				) {
 
 			@Override
 			public void run() {
@@ -185,7 +204,10 @@ public class TeachUnitClass extends ViewPart implements ISelectionListener{
 			
 		};
 		
-		openTreeAction = new Action("展开数据", CacheImage.getImageDescriptor("")) {
+		openTreeAction = new Action("展开数据", 
+				null
+//				CacheImage.getImageDescriptor("")
+				) {
 			@Override
 			public void run() {
 				treeViewer.expandAll();
@@ -195,6 +217,41 @@ public class TeachUnitClass extends ViewPart implements ISelectionListener{
 
 
 	protected void saveData() {
+		
+		Iterator<?> data = ((List<?>)(treeViewer.getInput())).iterator();
+		if(!data.hasNext()) {
+			MessageDialog.openWarning(null, "提示", "没有课程明细数据！");
+			return;
+		}
+		
+		Job job = new Job("正在保存数据....") {
+			
+			@Override
+			protected IStatus run(IProgressMonitor monitor) {
+				monitor.beginTask("正在保存数据....", IProgressMonitor.UNKNOWN);
+				while(data.hasNext()) {
+					CourseTreeParent parent = (CourseTreeParent) data.next();
+					Iterator<CourseTreeChildren> iterator = parent.getCourseTreeChildren().iterator();
+					System.out.println(parent.getCourseName());
+					while(iterator.hasNext()) {
+						CourseTreeChildren child = iterator.next();
+						monitor.worked(1);
+						Course course = child.getCourse();
+						System.out.println("\t" + course);
+					}
+					try {
+						TimeUnit.SECONDS.sleep(1);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+				monitor.done();		//任务完成
+				return Status.OK_STATUS;	//返回成功标志
+			}
+		};
+		
+		
 		// TODO Auto-generated method stub
 		System.out.println("保存数据.....");
 	}
