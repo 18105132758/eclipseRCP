@@ -13,7 +13,7 @@ public class City implements ITree{
         this.name = name;
     }
     public List<?> getChildren() {
-        return children;
+        return children; 
     }
     public void setChildren(List<?> children) {
         this.children = children;
