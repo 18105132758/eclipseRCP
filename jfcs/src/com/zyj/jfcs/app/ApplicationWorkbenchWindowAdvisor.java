@@ -43,6 +43,9 @@ public class ApplicationWorkbenchWindowAdvisor extends WorkbenchWindowAdvisor {
         //窗口只显示：最小化、关闭按钮
         configurer.setShellStyle(SWT.MIN | SWT.CLOSE);
         configurer.setTitle(AppConst.APPLICATION_TITLE);
+        
+        //状态栏显示进度条
+        configurer.setShowProgressIndicator(true);
     }
 
     /**

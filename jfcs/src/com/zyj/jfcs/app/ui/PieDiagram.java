@@ -218,7 +218,6 @@ public class PieDiagram extends ViewPart implements
 
 	@Override
 	public void selectionChanged(IWorkbenchPart part, ISelection selection) {
-		// TODO Auto-generated method stub
 		if(selection != null) {
 			refereshView();
 		}

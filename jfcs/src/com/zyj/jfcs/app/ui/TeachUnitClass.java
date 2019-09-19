@@ -1,5 +1,7 @@
 package com.zyj.jfcs.app.ui;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -7,7 +9,9 @@ import java.util.concurrent.TimeUnit;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.core.runtime.jobs.IJobChangeEvent;
 import org.eclipse.core.runtime.jobs.Job;
+import org.eclipse.core.runtime.jobs.JobChangeAdapter;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.dialogs.MessageDialog;
@@ -18,21 +22,29 @@ import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeColumn;
 import org.eclipse.ui.ISelectionListener;
+import org.eclipse.ui.IViewPart;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.ViewPart;
 
 import com.zyj.jfcs.app.model.Course;
+import com.zyj.jfcs.app.model.YearTeachUnit;
 import com.zyj.jfcs.app.sys.CacheImage;
 import com.zyj.jfcs.app.ui.entity.teachUnitClass.CourseTreeChildren;
 import com.zyj.jfcs.app.ui.entity.teachUnitClass.CourseTreeParent;
+import com.zyj.jfcs.app.ui.entity.teachUnitClass.SetControlEnabled;
 import com.zyj.jfcs.app.ui.entity.teachUnitClass.SetTableColColorListener;
 import com.zyj.jfcs.app.ui.entity.teachUnitClass.TeachUnitClassCellModifier;
 import com.zyj.jfcs.app.ui.entity.teachUnitClass.TeachUnitClassContentProvider;
 import com.zyj.jfcs.app.ui.entity.teachUnitClass.TeachUnitClassLabelProvider;
+import com.zyj.jfcs.app.ui.entity.teachUnitName.YearManager;
+import com.zyj.jfcs.constants.AppConst;
+import com.zyj.jfcs.constants.AppShowInfo;
 import com.zyj.jfcs.constants.ImagePath;
 /**
  * 教学单位课程明细
@@ -75,7 +87,8 @@ public class TeachUnitClass extends ViewPart implements ISelectionListener{
 	/**
 	 * 列属性，用来映射 控件数据-实体属性
 	 */
-	public static final String[] COLUMN_PROPERTIES = {COURSE_NAME, TERM, N2J, NJ, CLASS_NAME, R1J, R2J, R3J};
+	public static final String[] COLUMN_PROPERTIES = 
+		{COURSE_NAME, TERM, N2J, NJ, CLASS_NAME, R1J, R2J, R3J};
 	
 	/**
 	 * 树表格
@@ -107,6 +120,7 @@ public class TeachUnitClass extends ViewPart implements ISelectionListener{
 	}
 
 	private void createTreeViewer(Composite parent) {
+		
 		//样式： 有边框、支持滚动、点击时选中当前行
 		treeViewer = new TreeViewer(parent, SWT.BORDER | SWT.V_SCROLL | SWT.FULL_SELECTION);
 		//使用hash表加速 元素与SWT控件 之间的映射
@@ -119,32 +133,32 @@ public class TeachUnitClass extends ViewPart implements ISelectionListener{
 		
 		//创建表头列
 		Tree tree = treeViewer.getTree();
-		
 		tree.setLayoutData(new GridData(GridData.FILL_BOTH));
-		TreeColumn c1 = new TreeColumn(tree, SWT.CENTER);	//内容居左显示： CENTER-居中，RIGHT-居右
+		
+		TreeColumn c1 = new TreeColumn(tree, SWT.LEFT);	//内容居左显示： CENTER-居中，RIGHT-居右
 		c1.setText("课程名称");
 		c1.setWidth(175);
 		TreeColumn c2 = new TreeColumn(tree, SWT.CENTER);	
-		c1.setText("学期");
-		c1.setWidth(40);
-		TreeColumn c3 = new TreeColumn(tree, SWT.CENTER);	
-		c1.setText("学时");
-		c1.setWidth(40);
+		c2.setText("学期");
+		c2.setWidth(100);
+		TreeColumn c3 = new TreeColumn(tree, SWT.RIGHT);	
+		c3.setText("学时");
+		c3.setWidth(100);
 		TreeColumn c4 = new TreeColumn(tree, SWT.CENTER);	
-		c1.setText("学生数");
-		c1.setWidth(52);
+		c4.setText("学生数");
+		c4.setWidth(100);
 		TreeColumn c5 = new TreeColumn(tree, SWT.CENTER);	
-		c1.setText("班级");
-		c1.setWidth(112);
+		c5.setText("班级");
+		c5.setWidth(100);
 		TreeColumn c6 = new TreeColumn(tree, SWT.CENTER);	
-		c1.setText("层次");
-		c1.setWidth(62);
+		c6.setText("层次");
+		c6.setWidth(100);
 		TreeColumn c7 = new TreeColumn(tree, SWT.CENTER);	
-		c1.setText("课程/专业");
-		c1.setWidth(70);
+		c7.setText("课程/专业");
+		c7.setWidth(100);
 		TreeColumn c8 = new TreeColumn(tree, SWT.CENTER);	
-		c1.setText("质量");
-		c1.setWidth(40);
+		c8.setText("质量");
+		c8.setWidth(100);
 		treeViewer.setColumnProperties(COLUMN_PROPERTIES);
 		/*
 		 * 创建编辑器，前5列为null，表示不能修改，
@@ -160,6 +174,11 @@ public class TeachUnitClass extends ViewPart implements ISelectionListener{
 		
 		tree.setHeaderVisible(true);
 		tree.setLinesVisible(true);
+		
+		YearTeachUnit ytu = new YearTeachUnit();
+		ytu.setUnitName("测试");
+		treeViewer.setInput(prepareData(ytu));
+		
 		
 		treeViewer.expandToLevel(2);	//默认展开2级
 		tree.setFocus();
@@ -251,8 +270,29 @@ public class TeachUnitClass extends ViewPart implements ISelectionListener{
 			}
 		};
 		
+		job.addJobChangeListener(new JobChangeAdapter() {
+
+			@Override
+			public void done(IJobChangeEvent event) {
+				//获取任务处理结果状态
+				boolean isSuccess = event.getResult().isOK();
+				
+				Display.getCurrent().asyncExec(new Runnable() {
+					@Override
+					public void run() {
+						if(isSuccess) {
+							MessageDialog.openInformation(null, "提示", "保存成功！");
+						}else {
+							MessageDialog.openInformation(null, "提示", "保存失败！");
+						}
+					}
+				});
+			}
+		});
+		job.setUser(false);	//不显示UI进度界面
+		job.setPriority(Job.SHORT);		//设置较高优先级
+		job.schedule();	//将当前job加入计划队列
 		
-		// TODO Auto-generated method stub
 		System.out.println("保存数据.....");
 	}
 
@@ -280,7 +320,72 @@ public class TeachUnitClass extends ViewPart implements ISelectionListener{
 	 */
 	@Override
 	public void selectionChanged(IWorkbenchPart part, ISelection selection) {
+		System.out.println("title:" + part.getTitle());
+		
+		if(selection.isEmpty()) {
+			return;
+		}
+		
+		saveAction.setEnabled(new SetControlEnabled().isEnabled(YearManager.INSTANCE.getCurrYear()));
+		
+		IViewPart vp = getViewSite().getPage().findView(AppConst.VIEW_TEACH_UNIT_NAME_ID);
+		Table table = ((TeachUnitName)vp).getTableViewer().getTable();
+		YearTeachUnit ytu = (YearTeachUnit) table.getItem(table.getSelectionIndex()).getData();
+		
+		treeViewer.setInput(prepareData(ytu));
+	
+		treeViewer.expandToLevel(2);	//展开2级
+		
 		System.out.println("待编写.....................");
 	}
-
+	
+	
+	public Object prepareData(YearTeachUnit ytu) {
+		String unitName = "(" + ytu.getUnitName() + ")";
+		List<CourseTreeParent> list = new ArrayList<CourseTreeParent>();
+		//专业课
+		CourseTreeParent ctp = new CourseTreeParent(AppShowInfo.TITLE_ZYKMX + unitName);
+		list.add(ctp);
+		CourseTreeChildren ctc = new CourseTreeChildren();
+		ctc.setCourse(yw);
+		ctp.add(ctc);
+		ctc = new CourseTreeChildren();
+		ctc.setCourse(sx);
+		ctp.add(ctc);
+		//公共课
+		ctp = new CourseTreeParent(AppShowInfo.TITLE_GGKMX + unitName);
+		list.add(ctp);
+		ctc = new CourseTreeChildren();
+		ctc.setCourse(yw);
+		ctp.add(ctc);
+		ctc = new CourseTreeChildren();
+		ctc.setCourse(sx);
+		ctp.add(ctc);
+		System.out.println(list);
+		return list;
+	}
+	
+	private Course yw, sx;
+	{
+		yw = new Course();
+		yw.setCourseName("语文");;
+		yw.setTerm("1");
+		yw.setN2j(50);
+		yw.setNj(30);
+		yw.setClassName("一一班");
+		yw.setR1j(new BigDecimal(1));
+		yw.setR2j(new BigDecimal(1));
+		yw.setR3j(new BigDecimal(1));
+		
+		sx = new Course();
+		sx.setCourseName("数学");;
+		sx.setTerm("1");
+		sx.setN2j(60);
+		sx.setNj(20);
+		sx.setClassName("一二班");
+		sx.setR1j(new BigDecimal(1));
+		sx.setR2j(new BigDecimal(1));
+		sx.setR3j(new BigDecimal(1));
+				
+	}
 }
