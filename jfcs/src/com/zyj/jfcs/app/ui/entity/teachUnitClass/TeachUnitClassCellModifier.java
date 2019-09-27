@@ -2,6 +2,7 @@ package com.zyj.jfcs.app.ui.entity.teachUnitClass;
 
 import java.math.BigDecimal;
 
+import org.apache.commons.lang3.StringUtils;
 import org.eclipse.jface.viewers.ICellModifier;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.widgets.Item;
@@ -58,6 +59,10 @@ public class TeachUnitClassCellModifier implements ICellModifier {
 	 */
 	@Override
 	public void modify(Object element, String property, Object value) {
+		String vs = (String) value;
+		if(StringUtils.isBlank(vs)) {
+			value = null;
+		}
 		if(element instanceof Item) {
 			element = ((Item)element).getData();
 		}
