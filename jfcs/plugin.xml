@@ -100,6 +100,13 @@
             name="教学单位课程明细"
             restorable="true">
       </view>
+      <view
+            class="com.zyj.jfcs.app.ui.TeachUnitData"
+            icon="icons/views/teachUnitData.ocp"
+            id="com.zyj.jfcs.app.ui.teachUnitData"
+            name="教学单位基本情况"
+            restorable="true">
+      </view>
    </extension>
 
 </plugin>

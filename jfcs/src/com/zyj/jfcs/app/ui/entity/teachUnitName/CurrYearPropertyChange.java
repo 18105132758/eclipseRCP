@@ -15,7 +15,15 @@ import com.zyj.jfcs.constants.PropertyName;
  */
 public class CurrYearPropertyChange {
 	
-	public static final CurrYearPropertyChange INSTANCE = new CurrYearPropertyChange();
+	private static final CurrYearPropertyChange INSTANCE = new CurrYearPropertyChange();
+	
+	/**
+	 * 获取实例
+	 * @return
+	 */
+	public static CurrYearPropertyChange getInstance() {
+		return INSTANCE;
+	}
 	
 	/**
 	 * 已注册的监听器
