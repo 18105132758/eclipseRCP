@@ -44,7 +44,7 @@ public class YearCombo extends ControlContribution {
 				}
 				YearManager.INSTANCE.setCurrYear(currYear);
 				//激活属性变化事件
-				CurrYearPropertyChange.INSTANCE.firePropertyChangeListeners();
+				CurrYearPropertyChange.getInstance().firePropertyChangeListeners();
 			}
 		});
 		

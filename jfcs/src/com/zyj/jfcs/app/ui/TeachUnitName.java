@@ -42,7 +42,7 @@ public class TeachUnitName extends ViewPart implements IPropertyChangeListener{
 		createToolBar(parent);
 		
 		//注册为监听器
-		CurrYearPropertyChange.INSTANCE.addPropertyChangeListener(AppConst.VIEW_TEACH_UNIT_NAME_ID, this);
+		CurrYearPropertyChange.getInstance().addPropertyChangeListener(AppConst.VIEW_TEACH_UNIT_NAME_ID, this);
 	}
 
 	/**
@@ -100,7 +100,7 @@ public class TeachUnitName extends ViewPart implements IPropertyChangeListener{
 	public void dispose() {
 		super.dispose();
 		//移除监听
-		CurrYearPropertyChange.INSTANCE.removeListenerById(AppConst.VIEW_TEACH_UNIT_NAME_ID);
+		CurrYearPropertyChange.getInstance().removeListenerById(AppConst.VIEW_TEACH_UNIT_NAME_ID);
 	}
 
 	@Override

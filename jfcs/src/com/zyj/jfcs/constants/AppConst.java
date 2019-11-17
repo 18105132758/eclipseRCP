@@ -27,7 +27,10 @@ public class AppConst {
 	 * 	教学单位视图ID
 	 */
 	public static final String VIEW_TEACH_UNIT_NAME_ID  = "com.zyj.jfcs.app.ui.teachunitname";
-	
+	/**
+	 * 	教学单位基本情况视图ID
+	 */
+	public static final String VIEW_TEACH_UNIT_DATA_ID  = "com.zyj.jfcs.app.ui.teachUnitData";	
 	
 	/**
 	 *  远程数据源配置菜单项 ID
