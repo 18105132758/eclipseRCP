@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         id="application"
+         point="org.eclipse.core.runtime.applications">
+      <application>
+         <run
+               class="dbcol.app.Application">
+         </run>
+      </application>
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectives">
+      <perspective
+            class="dbcol.app.Perspective"
+            name="Perspective"
+            id="dbcol.app.perspective">
+      </perspective>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            locationURI="menu:org.eclipse.ui.main.menu">
+         <menu
+               label="File">
+            <command
+                  commandId="org.eclipse.ui.file.exit"
+                  label="Exit">
+            </command>
+         </menu>
+      </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.views">
+      <view
+            class="dbcol.app.View"
+            name="View"
+            id="dbColApp.view"
+            inject="true">
+      </view>
+      <view
+            class="dbcol.app.ui.DbCollection"
+            id="dbcol.app.ui.dbCollection"
+            name="DbCollect"
+            restorable="true">
+      </view>
+      <view
+            class="dbcol.app.ui.TableList"
+            id="dbcol.app.ui.tableList"
+            name="TableList"
+            restorable="true">
+      </view>
+      <view
+            class="dbcol.app.ui.TableData"
+            id="dbcol.app.ui.tableData"
+            name="TableData"
+            restorable="true">
+      </view>
+   </extension> 
+
+</plugin>
