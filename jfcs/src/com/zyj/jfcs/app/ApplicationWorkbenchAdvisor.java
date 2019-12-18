@@ -16,6 +16,7 @@ public class ApplicationWorkbenchAdvisor extends WorkbenchAdvisor {
     }
     
     public void initialize(IWorkbenchConfigurer configurer) {
+    	System.out.println("配置布局................................");
         super.initialize(configurer);
         //是否缓存窗口的状态，并在下次启动时还原，会拖慢启动速度。开发时不要开启此配置，影响功能测试
         configurer.setSaveAndRestore(false);	

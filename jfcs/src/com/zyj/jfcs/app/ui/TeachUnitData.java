@@ -136,7 +136,7 @@ public class TeachUnitData extends ViewPart implements IPropertyChangeListener{
 		//创建TableViewer
 		createTableViewer(container);
 		//创建分组，显示基本数据文本框
-		createTextGroup(container);
+//		createTextGroup(container);
 	}
 	
 	private void createTableViewer(Composite parent) {
